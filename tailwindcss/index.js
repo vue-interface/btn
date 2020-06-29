@@ -262,13 +262,13 @@ module.exports = plugin(function({ addComponents, theme }) {
         //  
         '.btn-sm': {
             padding: 'var(--btn-sm-padding-y) var(--btn-sm-padding-x)',
-            border: 'var(--btn-sm-border-radius)',
+            borderRadius: 'var(--btn-sm-border-radius)',
             fontSize: 'var(--btn-sm-font-size)',
         },
 
         '.btn-lg': {
             padding: 'var(--btn-lg-padding-y) var(--btn-lg-padding-x)',
-            border: 'var(--btn-lg-border-radius)',
+            borderRadius: 'var(--btn-lg-border-radius)',
             fontSize: 'var(--btn-lg-font-size)',
         }
     });
