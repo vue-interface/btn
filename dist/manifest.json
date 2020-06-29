@@ -1,3 +1,6 @@
 {
-  "Btn.common.js": "Btn.common.js"
+  "Btn.umd.min.css": "Btn.css",
+  "Btn.umd.min.js": "Btn.umd.min.js",
+  "Btn.umd.min.css.map": "Btn.css.map",
+  "Btn.umd.min.js.map": "Btn.umd.min.js.map"
 }
