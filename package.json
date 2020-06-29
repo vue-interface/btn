@@ -1,0 +1,68 @@
+{
+  "name": "@vue-interface/btn",
+  "version": "0.9.11",
+  "description": "An Vue activity indicator component.",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npm run serve",
+    "serve": "vue-cli-service build --target lib --name=Btn ./main.vue --watch",
+    "build": "vue-cli-service build --target lib --name=Btn ./main.vue",
+    "lint": "vue-cli-service lint",
+    "fix": "vue-cli-service lint --fix",
+    "pre-release": "npm run build; git add . -A; git commit -m 'pre-release commit'",
+    "release-patch": "npm run pre-release && npm version patch -m \"%s\" && npm run release;",
+    "release-minor": "npm run pre-release && npm version minor -m \"%s\" && npm run release;",
+    "release-major": "npm run pre-release && npm version major -m \"%s\" && npm run release;",
+    "release": "git add . -A; git commit; git push --tags origin; npm publish;",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "./node_modules/.bin/vuepress dev docs",
+    "docs:build": "./node_modules/.bin/vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vue-interface/btn.git"
+  },
+  "keywords": [
+    "Form",
+    "Control",
+    "Vue",
+    "Mixin",
+    "Tailwind",
+    "Bootstrap"
+  ],
+  "author": "Justin Kimbrell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vue-interface/btn/issues"
+  },
+  "homepage": "https://github.com/vue-interface/btn/docs#readme",
+  "dependencies": {
+    "@vue-interface/merge-classes": "^1.0.3",
+    "@vue-interface/sizeable": "^0.9.1",
+    "@vue-interface/utils": "^0.9.10",
+    "@vue-interface/variant": "^1.0.10",
+    "autoprefixer": "^9.8.4",
+    "core-js": "^3.6.4",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-functions": "^3.0.0",
+    "postcss-hexrgba": "^2.0.1",
+    "postcss-nested": "^4.2.1",
+    "tailwindcss": "^1.4.6",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.4.6",
+    "@vue/cli-plugin-eslint": "^4.4.6",
+    "@vue/cli-service": "^4.4.6",
+    "@vuepress/plugin-register-components": "^1.5.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "markdown-it-meta": "0.0.1",
+    "postcss-cli": "^7.1.1",
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-template-constants": "^0.2.1",
+    "webpack-manifest-plugin": "^2.2.0"
+  }
+}
