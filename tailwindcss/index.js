@@ -1,23 +1,42 @@
+
+const Color = require('color');
+const hexToRgba = require('hex-to-rgba');
 const plugin = require('tailwindcss/plugin');
-const { colors, backgroundColor, boxShadow } = require('tailwindcss/defaultTheme');
+const { colors, boxShadow } = require('tailwindcss/defaultTheme');
 const defaultVariations = require('@vue-interface/variant/tailwindcss/defaultVariations');
 
-module.exports = plugin(function({ addComponents, theme }) {
+function darken(color, ...args) {
+    return Color(color).darken(...args).hex();
+}
+
+function contrast(color, light, dark) {
+    return Color(color).luminosity() > .5 ? (dark || 'black') : (light || 'white');
+}
+
+function mix(color, subject, percent) {
+    return Color(color).mix(Color(subject), percent).hex();
+}
+
+function rgba(color, percent) {
+    return hexToRgba(color, percent);
+}
+
+module.exports = plugin(function({ addComponents, theme, postcss }) {
     function variant(key, backgroundColor, borderColor, color) {
         borderColor = borderColor || backgroundColor;
-        color = color || `contrast(${backgroundColor})`;
+        color = color || contrast(backgroundColor);
 
         Object.assign(component[':root'], {
             [`--btn-${key}-background-color`]: backgroundColor,
             [`--btn-${key}-border-color`]: borderColor,
             [`--btn-${key}-color`]: color,
-            [`--btn-${key}-hover-background-color`]: `darken(${backgroundColor}, .075)`,
-            [`--btn-${key}-hover-border-color`]: `darken(${borderColor}, .1)`,
-            [`--btn-${key}-hover-color`]: `darken(var(--btn-${key}-color), .1)`,
-            [`--btn-${key}-active-background-color`]: `darken(${backgroundColor}, .1)`,
-            [`--btn-${key}-active-border-color`]: `darken(${borderColor}, .125)`,
-            [`--btn-${key}-active-color`]: `var(--btn-${key}-color)`,
-            [`--btn-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(mix(var(--btn-${key}-active-color), var(--btn-${key}-active-border-color), .85), .5)`
+            [`--btn-${key}-hover-background-color`]: darken(backgroundColor, .075),
+            [`--btn-${key}-hover-border-color`]: darken(borderColor, .1),
+            [`--btn-${key}-hover-color`]: darken(color, .1),
+            [`--btn-${key}-active-background-color`]: darken(backgroundColor, .1),
+            [`--btn-${key}-active-border-color`]: darken(borderColor, .125),
+            [`--btn-${key}-active-color`]: color,
+            [`--btn-${key}-focus-box-shadow`]: `0 0 0 ${theme('btn.focus.width')} ${rgba(mix(color, darken(borderColor, .125), .85), .5)}`
         });
 
         Object.assign(component, {
@@ -25,32 +44,32 @@ module.exports = plugin(function({ addComponents, theme }) {
                 color,
                 borderColor,
                 backgroundColor,
-                boxShadow: theme('btn.enableShadows') ? 'var(--btn-box-shadow)' : null,
-                backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, rgba(${theme('colors.white', colors.white)}, .15), rgba(${theme('colors.white', colors.white)}, 0))` : undefined,
+                boxShadow: theme('btn.enableShadows') ? theme('btn.boxShadow') : null,
+                backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, ${rgba(theme('colors.white', colors.white), .15)}, ${rgba(theme('colors.white', colors.white), 0)})` : undefined,
         
                 '&:hover': {
-                    color: `var(--btn-${key}-hover-color)`,
-                    backgroundColor: `var(--btn-${key}-hover-background-color)`,
-                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, rgba(${theme('colors.white', colors.white)}, .15), rgba(${theme('colors.white', colors.white)}, 0))` : undefined,
-                    borderColor: `var(--btn-${key}-hover-border-color)`
+                    color: darken(color, .1),
+                    backgroundColor: darken(backgroundColor, .075),
+                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, ${rgba(theme('colors.white', colors.white), .15)}, ${rgba(theme('colors.white', colors.white), 0)})` : undefined,
+                    borderColor: darken(borderColor, .1)
                 },
 
                 '&:focus, &.focus': {
-                    color: `var(--btn-${key}-active-color)`,
-                    backgroundColor: `var(--btn-${key}-active-background-color)`,
-                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, rgba(${theme('colors.white', colors.white)}, .15), rgba(${theme('colors.white', colors.white)}, 0))` : undefined,
-                    borderColor: `var(--btn-${key}-active-border-color)`,
-                    boxShadow: theme('btn.enableShadows') ? 'var(--btn-box-shadow), ' : '' + `var(--btn-${key}-focus-box-shadow)`,
+                    color,
+                    backgroundColor: darken(backgroundColor, .1),
+                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, ${rgba(theme('colors.white', colors.white), .15)}, ${rgba(theme('colors.white', colors.white), 0)})` : undefined,
+                    borderColor: darken(borderColor, .125),
+                    boxShadow: theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '' + `0 0 0 ${theme('btn.focus.width')} ${rgba(mix(color, darken(borderColor, .125), .85), .5)}`,
                 },
 
                 '&:active, &.active, .show > &.dropdown-toggle': {
-                    color: `var(--btn-${key}-active-color)`,
-                    backgroundColor: `var(--btn-${key}-active-background-color)`,
+                    color,
+                    backgroundColor: darken(backgroundColor, .1),
                     backgroundImage: theme('btn.enableGradients') ? 'none' : undefined,
-                    borderColor: `var(--btn-${key}-active-border-color)`,
+                    borderColor: darken(borderColor, .125),
 
                     '&:focus': {
-                        boxShadow: theme('btn.enableShadows') ? 'var(--btn-active-box-shadow), ' : '' + `var(--btn-${key}-focus-box-shadow)`
+                        boxShadow: theme('btn.enableShadows') ? `${theme('btn.active.boxShadow')}, ` : '' + `0 0 0 ${theme('btn.focus.width')} ${rgba(mix(color, darken(borderColor, .125), .85), .5)}`
                     }
                 },
 
@@ -68,11 +87,11 @@ module.exports = plugin(function({ addComponents, theme }) {
         Object.assign(component[':root'], {
             [`--btn-outline-${key}-color`]: color,
             [`--btn-outline-${key}-border-color`]: color,
-            [`--btn-outline-${key}-hover-color`]: `contrast(${color})`,
+            [`--btn-outline-${key}-hover-color`]: contrast(color),
             [`--btn-outline-${key}-active-background-color`]: color,
             [`--btn-outline-${key}-active-border-color`]: color,
-            [`--btn-outline-${key}-active-color`]: `contrast(${color})`,
-            [`--btn-outline-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(${color}, .5)`
+            [`--btn-outline-${key}-active-color`]: contrast(color),
+            [`--btn-outline-${key}-focus-box-shadow`]: `0 0 0 ${theme('btn.focus.width')} ${rgba(color, .5)}`
         });
         
         Object.assign(component, {
@@ -81,22 +100,22 @@ module.exports = plugin(function({ addComponents, theme }) {
                 borderColor: color,
             
                 '&:hover': {
-                    color: `var(--btn-outline-${key}-hover-color)`,
-                    backgroundColor: `var(--btn-outline-${key}-active-background-color)`,
-                    borderColor: `var(--btn-outline-${key}-active-border-color)`
+                    color: contrast(color),
+                    backgroundColor: color,
+                    borderColor: color
                 },
           
                 '&:focus, &.focus': {
-                    boxShadow: `0 0 0 var(--btn-focus-width) rgba(${color}, .5)`
+                    boxShadow: `0 0 0 ${theme('btn.focus.width')} ${rgba(color, .5)}`
                 },
           
                 '&:active, &.active, &.dropdown-toggle.show': {
-                    color: `var(--btn-outline-${key}-active-color)`,
-                    backgroundColor: `var(--btn-outline-${key}-active-background-color)`,
-                    bordercolor: `var(--btn-outline-${key}-active-border-color)`,
+                    color: contrast(color),
+                    backgroundColor: color,
+                    borderColor: color,
           
                     '&:focus': {
-                        boxShadow: theme('btn.enableShadows') ? 'var(--btn-active-box-shadow), ' : '' + `var(--btn-outline-${key}-focus-box-shadow)`
+                        boxShadow: theme('btn.enableShadows') ? `${theme('btn.active.boxShadow')}, ` : '' + `0 0 0 ${theme('btn.focus.width')} ${rgba(color, .5)}`
                     }
                 },
           
@@ -124,7 +143,6 @@ module.exports = plugin(function({ addComponents, theme }) {
             '--btn-white-space': theme('btn.whiteSpace'),
             '--btn-vertical-align': theme('btn.verticalAlign'),
             '--btn-user-select': theme('btn.userSelect'),
-            '--btn-background-color': theme('btn.backgroundColor'),
             '--btn-border-width': theme('btn.borderWidth'),
             '--btn-font-weight': theme('btn.fontWeight'),
             '--btn-box-shadow': theme('btn.boxShadow'),
@@ -142,7 +160,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             '--btn-lg-border-radius': theme('btn.lg.borderRadius'),
 
             '--btn-focus-width': `${theme('btn.focus.width')}`,
-            '--btn-focus-box-shadow': `0 0 0 var(--btn-focus-width) rgba(mix(#fff, ${defaultVariations.primary}, .85), .5)`,
+            '--btn-focus-box-shadow': `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}`,
             '--btn-focus-outline': `${theme('btn.focus.outline')}`,
 
             '--btn-hover-text-decoration': theme('btn.hover.textDecoration'),
@@ -169,46 +187,46 @@ module.exports = plugin(function({ addComponents, theme }) {
         // Base styles
         //
         '.btn': {
-            display: 'var(--btn-display)',
-            padding: 'var(--btn-padding-y) var(--btn-padding-x)',
-            fontSize: 'var(--btn-font-size)',
-            fontFamily: 'var(--btn-font-family)',
-            fontWeight: 'var(--btn-font-weight)',
-            lineHeight: 'var(--btn-line-height)',
-            color: 'var(--btn-color)',
-            textAlign: 'var(--btn-text-align)',
-            textDecoration: 'var(--btn-text-decoration)',
-            whiteSpace: 'var(--btn-white-space)',
-            verticalAlign: 'var(--btn-vertical-align)',
-            cursor: theme('enablePointers') ? 'var(--btn-cursor)' : null,
-            userSelect: 'var(--btn-user-select)',
-            backgroundColor: 'var(--btn-background-color)',
-            border: `var(--btn-border-width) solid transparent`,
-            borderRadius: 'var(--btn-border-radius)',
-            transition: 'var(--btn-transition)',
-            boxShadow: null, //theme('btn.enableShadows') ? 'var(--btn-box-shadow)' : null,
+            display: theme('btn.display'),
+            padding: `${theme('btn.paddingY')} ${theme('btn.paddingX')}`,
+            fontSize: theme('btn.fontSize'),
+            fontFamily: theme('btn.fontFamily'),
+            fontWeight: theme('btn.fontWeight'),
+            lineHeight: theme('btn.lineHeight'),
+            color: theme('btn.color'),
+            textAlign: theme('btn.textAlign'),
+            textDecoration: theme('btn.textDecoration'),
+            whiteSpace: theme('btn.whiteSpace'),
+            verticalAlign: theme('btn.verticalAlign'),
+            cursor: theme('enablePointers') ? 'pointer' : null,
+            userSelect: theme('btn.userSelect'),
+            backgroundColor: theme('btn.backgroundColor'),
+            border: `${theme('btn.borderWidth')} solid transparent`,
+            borderRadius: theme('btn.borderRadius'),
+            transition: theme('btn.transition'),
+            boxShadow: null,
 
             '&:hover': {
                 color: theme('colors.gray.900', colors.gray[900]),
-                textDecoration: 'var(--btn-hover-text-decoration)',
+                textDecoration: theme('btn.hover.textDecoration'),
             },
         
             '&:focus, &.focus': {
-                outline: 'var(--btn-focus-outline)',
-                boxShadow: (theme('btn.enableShadows') ? 'var(--btn-box-shadow), ' : '') + `var(--btn-focus-box-shadow)`
+                outline: theme('btn.focus.outline'),
+                boxShadow: (theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '') + `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}`
             },
         
             '&:active, &.active': {
-                boxShadow: theme('btn.enabledShadows') ? 'var(--btn-active-box-shadow)' : null,
+                boxShadow: theme('btn.enabledShadows') ? theme('btn.active.boxShadow') : null,
             
                 '&:focus': {
-                    boxShadow: `var(--btn-focus-box-shadow), ${theme('btn.enabledShadows') ? 'var(--btn-active-box-shadow)' : null}`
+                    boxShadow: `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}, ${theme('btn.enabledShadows') ? theme('btn.active.boxShadow') : null}`
                 }
             },
         
-            '&:disabled, &.disabled, fieldset:disabled &': { // stylelint-disable-line selector-no-qualifying-type
+            '&:disabled, &.disabled, fieldset:disabled &': {
                 pointerEvents: 'none',
-                opacity: 'var(--btn-disabled-opacity)',
+                opacity: theme('btn.disabled.opacity'),
                 boxShadow: 'none'
             }
         }
@@ -226,21 +244,21 @@ module.exports = plugin(function({ addComponents, theme }) {
         //
         // Make a button look and behave like a link
         '.btn-link': {
-            fontWeight: 'var(--btn-link-font-weight)',
-            color: 'var(--btn-link-color)',
-            textDecoration: 'var(--btn-link-text-decoration)',
+            fontWeight: theme('btn.link.fontWeight'),
+            color: theme('btn.link.color'),
+            textDecoration: theme('btn.link.textDecoration'),
         
             '&:hover': {
-                color: 'var(--btn-link-hover-color)',
-                textDecoration: 'var(--btn-link-hover-text-decoration)'
+                color: theme('btn.link.hover.color'),
+                textDecoration: theme('btn.link.hover.textDecoration')
             },
         
             '&:focus, &.focus': {
-                textDecoration: 'var(--btn-link-focus-text-decoration)'
+                textDecoration: theme('btn.link.focus.textDecoration')
             },
         
             '&:disabled, &.disabled': {
-                color: 'var(--btn-link-disabled-color)'
+                color: theme('btn.link.disabled.color')
             }
         },
 
@@ -248,12 +266,12 @@ module.exports = plugin(function({ addComponents, theme }) {
         // Block button
         //
         '.btn-block': {
-            display: 'var(--btn-block-display)',
-            width: 'var(--btn-block-width)',
+            display: theme('btn.block.display'),
+            width: theme('btn.block.width'),
         
             // Vertically space out multiple block buttons
             '+ .btn-block': {
-                marginTop: 'var(--btn-block-margin-top)'
+                marginTop: theme('btn.block.marginTop')
             }
         },
   
@@ -261,15 +279,15 @@ module.exports = plugin(function({ addComponents, theme }) {
         // Button Sizes
         //  
         '.btn-sm': {
-            padding: 'var(--btn-sm-padding-y) var(--btn-sm-padding-x)',
-            borderRadius: 'var(--btn-sm-border-radius)',
-            fontSize: 'var(--btn-sm-font-size)',
+            padding: `${theme('btn.sm.paddingY')} ${theme('btn.sm.paddingX')}`,
+            borderRadius: theme('btn.sm.borderRadius'),
+            fontSize: theme('btn.sm.fontSize'),
         },
 
         '.btn-lg': {
-            padding: 'var(--btn-lg-padding-y) var(--btn-lg-padding-x)',
-            borderRadius: 'var(--btn-lg-border-radius)',
-            fontSize: 'var(--btn-lg-font-size)',
+            padding: `${theme('btn.lg.paddingY')} ${theme('btn.lg.paddingX')}`,
+            borderRadius: theme('btn.lg.borderRadius'),
+            fontSize: theme('btn.lg.fontSize'),
         }
     });
 
@@ -295,7 +313,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             userSelect: 'none',
             borderWidth: theme('form.borderWidth', '1px'),
             fontWeight: theme('form.fontWeight', 'normal'),
-            boxShadow: `inset 0 1px 0 rgba(${theme('colors.white', colors.white)}, .15), 0 1px 1px rgba(${theme('colors.black', colors.black)}, .075)`,
+            boxShadow: `inset 0 1px 0 ${rgba(theme('colors.white', colors.white), .15)}, 0 1px 1px ${rgba(theme('colors.black', colors.black), .075)}`,
             borderRadius: theme('form.borderRadius', '.25rem'),
             blockSpacingY: '.5rem',
             transition: 'color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
@@ -323,7 +341,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             },
             
             active: {
-                boxShadow: `inset 0 3px 5px rgba(${theme('colors.black', colors.black)}, .125)`,
+                boxShadow: `inset 0 3px 5px ${rgba(theme('colors.black', colors.black), .125)}`,
             },
 
             focus: {
@@ -337,7 +355,7 @@ module.exports = plugin(function({ addComponents, theme }) {
                 textDecoration: 'none',
                 fontWeight: 'normal',
                 hover: {
-                    color: `darken(var(--btn-link-color), .15)`,
+                    color: darken('#0d6efd', .15),
                     textDecoration: 'underline'
                 },
                 focus: {
