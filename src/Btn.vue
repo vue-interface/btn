@@ -27,7 +27,6 @@
 
 <script>
 import { kebabCase } from '@vue-interface/utils';
-import MergeClasses from '@vue-interface/merge-classes';
 import Sizeable from '@vue-interface/sizeable';
 import Variant from '@vue-interface/variant';
 
@@ -36,7 +35,6 @@ export default {
     name: 'Btn',
 
     mixins: [
-        MergeClasses,
         Sizeable,
         Variant,
     ],
@@ -109,14 +107,14 @@ export default {
         },
 
         classes() {
-            return this.mergeClasses(
-                'btn',
-                this.variantClass,
-                this.sizeableClass,
-                this.colorableClasses,
-                this.block ? 'btn-block' : '',
-                this.active ? 'active' : ''
-            );
+            return {
+                'active': this.active,
+                'btn': true,
+                'btn-block': this.block,
+                [this.variantClass]: !!this.variantClass,
+                [this.sizeableClass]: !!this.sizeableClass,
+                [this.colorableClasses]: !!this.colorableClasses,
+            };
         }
 
     },
