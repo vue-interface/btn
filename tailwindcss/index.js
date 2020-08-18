@@ -129,7 +129,6 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
 
     const component = {
         ':root': {
-            '--btn-display': theme('btn.display'),
             '--btn-color': theme('btn.color'),
             '--btn-padding-y': theme('btn.paddingY'),
             '--btn-padding-x': theme('btn.paddingX'),
@@ -137,12 +136,8 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
             '--btn-border-radius': theme('btn.borderRadius'),
             '--btn-font-family': theme('btn.fontFamily'),
             '--btn-font-size':  theme('btn.fontSize'),
-            '--btn-text-align': theme('btn.textAlign'),
-            '--btn-text-decoration': theme('btn.textDecoration'),
             '--btn-line-height': `${theme('btn.lineHeight')}`,
             '--btn-white-space': theme('btn.whiteSpace'),
-            '--btn-vertical-align': theme('btn.verticalAlign'),
-            '--btn-user-select': theme('btn.userSelect'),
             '--btn-border-width': theme('btn.borderWidth'),
             '--btn-font-weight': theme('btn.fontWeight'),
             '--btn-box-shadow': theme('btn.boxShadow'),
@@ -162,8 +157,6 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
             '--btn-focus-width': `${theme('btn.focus.width')}`,
             '--btn-focus-box-shadow': `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}`,
             '--btn-focus-outline': `${theme('btn.focus.outline')}`,
-
-            '--btn-hover-text-decoration': theme('btn.hover.textDecoration'),
 
             '--btn-disabled-opacity': `${theme('btn.disabled.opacity')}`,
 
@@ -187,32 +180,32 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
         // Base styles
         //
         '.btn': {
-            display: theme('btn.display'),
+            display: 'inline-block',
             padding: `${theme('btn.paddingY')} ${theme('btn.paddingX')}`,
             fontSize: theme('btn.fontSize'),
             fontFamily: theme('btn.fontFamily'),
             fontWeight: theme('btn.fontWeight'),
             lineHeight: theme('btn.lineHeight'),
             color: theme('btn.color'),
-            textAlign: theme('btn.textAlign'),
-            textDecoration: theme('btn.textDecoration'),
+            textAlign: 'center',
+            textDecoration: 'none',
             whiteSpace: theme('btn.whiteSpace'),
-            verticalAlign: theme('btn.verticalAlign'),
+            verticalAlign: 'middle',
             cursor: theme('enablePointers') ? 'pointer' : null,
-            userSelect: theme('btn.userSelect'),
-            backgroundColor: theme('btn.backgroundColor'),
+            userSelect: 'none',
+            backgroundColor: 'transparent',
             border: `${theme('btn.borderWidth')} solid transparent`,
             borderRadius: theme('btn.borderRadius'),
             transition: theme('btn.transition'),
-            boxShadow: null,
+            // boxShadow: null,
 
             '&:hover': {
                 color: theme('colors.gray.900', colors.gray[900]),
-                textDecoration: theme('btn.hover.textDecoration'),
+                textDecoration: 'none',
             },
         
             '&:focus, &.focus': {
-                outline: theme('btn.focus.outline'),
+                outline: 0,
                 boxShadow: (theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '') + `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}`
             },
         
@@ -298,19 +291,13 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
             enablePointers: true,
             enableGradients: false,
             enableShadows: false,
-            display: 'inline-block',
             color: 'inherit',
             paddingY: theme('form.paddingY', '.375rem'),
             paddingX: theme('form.paddingX', '.75rem'),
             fontFamily:  theme('form.fontFamily', 'inherit'),
             fontSize: theme('form.fontSize', '1rem'),
-            textAlign: 'center',
-            textDecoration: 'none',
             lineHeight: theme('form.fontSize', 1.5),
             whiteSpace: theme('form.whiteSpace', 'nowrap'), // Set to `nowrap` to prevent text wrapping
-            backgroundColor: 'transparent',
-            verticalAlign: 'middle',
-            userSelect: 'none',
             borderWidth: theme('form.borderWidth', '1px'),
             fontWeight: theme('form.fontWeight', 'normal'),
             boxShadow: `inset 0 1px 0 ${rgba(theme('colors.white', colors.white), .15)}, 0 1px 1px ${rgba(theme('colors.black', colors.black), .075)}`,
@@ -332,10 +319,6 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
                 borderRadius: theme('form.lg.borderRadius', '.25rem'),
             },
 
-            hover: {
-                textDecoration: 'none'
-            },
-
             disabled: {
                 opacity: .65
             },
@@ -346,7 +329,6 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
 
             focus: {
                 width: theme('form.focus.width', '.25rem'),
-                outline: 0,
                 boxShadow
             },
 
