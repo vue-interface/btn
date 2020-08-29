@@ -1,25 +1,6 @@
-
-const Color = require('color');
-const hexToRgba = require('hex-to-rgba');
 const plugin = require('tailwindcss/plugin');
 const { colors, boxShadow } = require('tailwindcss/defaultTheme');
-const defaultVariations = require('@vue-interface/variant/tailwindcss/defaultVariations');
-
-function darken(color, ...args) {
-    return Color(color).darken(...args).hex();
-}
-
-function contrast(color, light, dark) {
-    return Color(color).luminosity() > .5 ? (dark || 'black') : (light || 'white');
-}
-
-function mix(color, subject, percent) {
-    return Color(color).mix(Color(subject), percent).hex();
-}
-
-function rgba(color, percent) {
-    return hexToRgba(color, percent);
-}
+const { darken, contrast, mix, rgba } = require('@vue-interface/tailwindcss/utils');
 
 module.exports = plugin(function({ addComponents, theme, postcss }) {
     function variant(key, backgroundColor, borderColor, color) {
@@ -155,7 +136,7 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
             '--btn-lg-border-radius': theme('btn.lg.borderRadius'),
 
             '--btn-focus-width': `${theme('btn.focus.width')}`,
-            '--btn-focus-box-shadow': `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}`,
+            '--btn-focus-box-shadow': `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', theme('interface.variations.primary'), .85), .5)}`,
             '--btn-focus-outline': `${theme('btn.focus.outline')}`,
 
             '--btn-disabled-opacity': `${theme('btn.disabled.opacity')}`,
@@ -206,14 +187,14 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
         
             '&:focus, &.focus': {
                 outline: 0,
-                boxShadow: (theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '') + `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}`
+                boxShadow: (theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '') + `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', theme('interface.variations.primary'), .85), .5)}`
             },
         
             '&:active, &.active': {
                 boxShadow: theme('btn.enabledShadows') ? theme('btn.active.boxShadow') : null,
             
                 '&:focus': {
-                    boxShadow: `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', defaultVariations.primary, .85), .5)}, ${theme('btn.enabledShadows') ? theme('btn.active.boxShadow') : null}`
+                    boxShadow: `0 0 0 ${theme('btn.focus.width')} ${rgba(mix('#fff', theme('interface.variations.primary'), .85), .5)}, ${theme('btn.enabledShadows') ? theme('btn.active.boxShadow') : null}`
                 }
             },
         
@@ -225,7 +206,7 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
         }
     };
     
-    Object.entries(theme('variations', defaultVariations))
+    Object.entries(theme('interface.variations'))
         .forEach(([key, value]) => {
             variant(key, value);
             outlineVariant(key, value);
@@ -288,9 +269,9 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
 }, {
     theme: {
         btn: theme => ({
-            enablePointers: true,
-            enableGradients: false,
-            enableShadows: false,
+            enablePointers: theme('interface.enable.pointers', true),
+            enableGradients: theme('interface.enable.gradients', false),
+            enableShadows: theme('interface.enable.shadows', false),
             color: 'inherit',
             paddingY: theme('form.paddingY', '.375rem'),
             paddingX: theme('form.paddingX', '.75rem'),

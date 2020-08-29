@@ -14,6 +14,7 @@ module.exports = {
         container: false,
     },
     plugins: [
+        require('@vue-interface/tailwindcss'),
         require('@vue-interface/variant/tailwindcss'),
         require('./tailwindcss')
     ]
