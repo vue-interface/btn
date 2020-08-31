@@ -38,15 +38,14 @@
   "homepage": "https://github.com/vue-interface/btn/docs#readme",
   "dependencies": {
     "@vue-interface/sizeable": "^0.9.1",
+    "@vue-interface/tailwindcss": "^0.2.5",
     "@vue-interface/utils": "^0.9.16",
     "@vue-interface/variant": "^1.0.12",
     "core-js": "^3.6.4",
     "tailwindcss": "^1.7.6",
     "vue": "^2.6.12"
   },
-  "devDependencies": {
-    "@vue-interface/tailwindcss": "^0.2.2",
-    "@vue/cli-plugin-babel": "^4.5.4",
+  "devDependencies": {    "@vue/cli-plugin-babel": "^4.5.4",
     "@vue/cli-plugin-eslint": "^4.5.4",
     "@vue/cli-service": "^4.5.4",
     "@vuepress/plugin-register-components": "^1.5.4",

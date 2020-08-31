@@ -1,5 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 const { colors, boxShadow } = require('tailwindcss/defaultTheme');
+const defaultVariations = require('@vue-interface/tailwindcss/defaultVariations');
 const { darken, contrast, mix, rgba } = require('@vue-interface/tailwindcss/utils');
 
 module.exports = plugin(function({ addComponents, theme, postcss }) {
@@ -206,7 +207,7 @@ module.exports = plugin(function({ addComponents, theme, postcss }) {
         }
     };
     
-    Object.entries(theme('interface.variations'))
+    Object.entries(theme('interface.variations', defaultVariations))
         .forEach(([key, value]) => {
             variant(key, value);
             outlineVariant(key, value);
