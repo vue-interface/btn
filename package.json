@@ -1,6 +1,6 @@
 {
   "name": "@vue-interface/btn",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "A Vue button component.",
   "main": "index.js",
   "scripts": {
@@ -45,7 +45,8 @@
     "tailwindcss": "^1.7.6",
     "vue": "^2.6.12"
   },
-  "devDependencies": {    "@vue/cli-plugin-babel": "^4.5.4",
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.4",
     "@vue/cli-plugin-eslint": "^4.5.4",
     "@vue/cli-service": "^4.5.4",
     "@vuepress/plugin-register-components": "^1.5.4",
