@@ -2,7 +2,7 @@
   "name": "@vue-interface/btn",
   "version": "0.9.10",
   "description": "A Vue button component.",
-  "main": "./dist/Btn.umd.js",
+  "main": "./index.js",
   "scripts": {
     "watch": "npm run serve",
     "serve": "vue-cli-service build --target lib --name=Btn ./main.vue --watch",
