@@ -4,17 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Btn</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap-reboot.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap-grid.min.css">
-        <link rel="stylesheet" href="./dist/Btn.css">
     </head>
     <body>
-        <div id="app" class="container">
-            <h1 class="mb-5">btn</h1>
+        <div id="app" class="container mx-auto">
+            <h1 class="text-4xl mb-6">btn</h1>
 
-            <h2>Basic Usage</h2>
+            <h3 class="text-2xl">Color Variants</h3>
 
-            <btn type="button" variant="primary">Primary</btn>
+            <btn type="button" size="lg" variant="primary">Primary</btn>
             <btn type="button" variant="secondary">Secondary</btn>
             <btn type="button" variant="success">Success</btn>
             <btn type="button" variant="danger">Danger</btn>
@@ -25,7 +22,7 @@
             
             <btn type="button" variant="link">Link</btn>
 
-            <h2>Outline Buttons</h2>
+            <h2>Outlined Buttons</h2>
 
             <btn type="button" variant="primary" outline>Primary</btn>
             <btn type="button" variant="secondary" outline>Secondary</btn>
@@ -36,12 +33,13 @@
             <btn type="button" variant="light" outline>Light</btn>
             <btn type="button" variant="dark" outline>Dark</btn>
         
+            
+            <!--
             <h2>Block Buttons</h2>
 
             <btn type="button" variant="primary" block>Primary</btn>
             <btn type="button" variant="secondary" block outline>Secondary</btn>
 
-            <!--
             <hr>
 
             <h3>Checkbox and Radio buttons</h3>
@@ -59,7 +57,6 @@
                     <input v-model="form.checkbox" type="checkbox" name="checkbox[]" value="3" /> Checkbox 3
                 </btn>
             </btn-group>
-            -->
 
             <hr>
 
@@ -86,78 +83,22 @@
             <h3>Disabled</h3>
 
             <btn variant="primary" disabled>Disabled</btn>
-
-            <hr>
-
-            <h3>Block</h3>
-
-            <btn variant="primary" block>Primary</btn>
-            <btn variant="secondary" block>Secondary</btn>
-            <btn variant="success" block>Success</btn>
-            <btn variant="danger" block>Danger</btn>
-            <btn variant="warning" block>Warning</btn>
-            <btn variant="info" block>Info</btn>
-            <btn variant="dark" block>Dark</btn>
-            <btn variant="light" block>Light</btn>
-            <btn variant="muted" block>Muted</btn>
-
-            <!-- 
-            <hr>
-
-            <h2>Non-Standard Bootstrap Features</h2>
-
-            <p>
-                Currently Bootstrap doesn't support the following features out
-                of the box, however these are common concepts that users may
-                need when building a responsive application. If/when Bootstrap
-                implements these features, they will be removed from the
-                library.
-            </p>
-
-            <h3>Responsive Block Sizes</h3>
-
-            <btn variant="primary" class="btn-xs-block">btn-xs-block</btn>
-            <btn variant="primary" class="btn-sm-block">btn-sm-block</btn>
-            <btn variant="primary" class="btn-md-block">btn-md-block</btn>
-            <btn variant="primary" class="btn-lg-block">btn-lg-block</btn>
-            <btn variant="primary" class="btn-xl-block">btn-xl-block</btn>
-
-            <hr>
-
-            <h3>Auto Margins</h3>
-
-            <btn variant="primary" class="btn-md-block">btn-md-block</btn>
-            <btn variant="primary" class="btn-md-block">btn-md-block</btn>
-            <btn variant="primary" class="btn-md-block">btn-md-block</btn>
             -->
 
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
-        <script type="text/javascript" src="./dist/Btn.umd.js"></script>
-        <script type="text/javascript">
-            Vue.use(VueRouter);
-
-            const router = new VueRouter({
-                routes: [{
-                    path: '/test',
-                    name: 'Home'
-                }]
-            });
-
+        
+        <script type="module">
+            import './index.css';
+            import Vue from 'vue/dist/vue';
+            import { Btn } from './index.js';
+            
+            Vue.config.devtools = false;
+            Vue.config.productionTip = false;
+            
             const vue = new Vue({
-                router: router,
                 el: '#app',
                 components: {
                     Btn
-                },
-                data() {
-                    return {
-                        form: {
-                            checkbox: []
-                        }
-                    }
                 }
             });
         </script>

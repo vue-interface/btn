@@ -1,20 +1,18 @@
-const plugin = require('tailwindcss/plugin');
+const safelist = require('./tailwindcss/safelist');
 
 module.exports = {
-    purge: {
-        content: [
-            './src/**/*.vue',
-            './node_modules/@vue-interface/**/src/**/*.vue'
-        ],
-        options: {
-            whitelistPatterns: [/^bg-/]
-        }
-    },
-    corePlugins: {
-        container: false,
+    content: [
+        "./index.html",
+        "./src/**/*.{vue,js,ts,jsx,tsx}",
+    ],
+    theme: {
+        extend: {},
     },
     plugins: [
-        require('@vue-interface/variant/tailwindcss'),
         require('./tailwindcss')
-    ]
+    ],
+    safelist: safelist(Object.assign({},
+        require('@vue-interface/variant/tailwindcss/variations'),
+        require('@vue-interface/variant/tailwindcss/colors')
+    ))
 };

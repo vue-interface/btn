@@ -26,17 +26,14 @@
 </template>
 
 <script>
-import { kebabCase } from '@vue-interface/utils';
-import MergeClasses from '@vue-interface/merge-classes';
-import Sizeable from '@vue-interface/sizeable';
-import Variant from '@vue-interface/variant';
+import { Sizeable } from '@vue-interface/sizeable';
+import { Variant } from '@vue-interface/variant';
 
 export default {
 
     name: 'Btn',
 
     mixins: [
-        MergeClasses,
         Sizeable,
         Variant,
     ],
@@ -94,6 +91,16 @@ export default {
         to: [Object, String],
 
         /**
+         * The size name.
+         *
+         * @param {String}
+         */
+        size: {
+            type: String,
+            default: 'md'
+        },
+
+        /**
          * The type attribute for the button. Not applied if an anchor
          *
          * @property String
@@ -105,18 +112,17 @@ export default {
     computed: {
 
         variantClassPrefix() {
-            return kebabCase(this.$options.name) + (this.outline ? '-outline' : '');
+            return this.variantPrefix + (this.outline ? '-outline' : '');
         },
 
         classes() {
-            return this.mergeClasses(
+            return [
                 'btn',
                 this.variantClass,
                 this.sizeableClass,
-                this.colorableClasses,
                 this.block ? 'btn-block' : '',
-                this.active ? 'active' : ''
-            );
+                this.active ? 'active' : '',
+            ];
         }
 
     },

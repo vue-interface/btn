@@ -1,23 +1,38 @@
 const plugin = require('tailwindcss/plugin');
-const { colors, backgroundColor, boxShadow } = require('tailwindcss/defaultTheme');
-const defaultVariations = require('@vue-interface/variant/tailwindcss/defaultVariations');
+const colors = require('tailwindcss/colors');
+const { boxShadow } = require('tailwindcss/defaultTheme');
+const variations = require('@vue-interface/variant/tailwindcss/variations');
+const reduce = require('@vue-interface/variant/tailwindcss/reduce');
+const Color = require('color');
+
+function contrast(color, light, dark) {
+    return Color(color).luminosity() > .5 ? (dark || 'black') : (light || 'white');
+}
+
+function darken(color, ...args) {
+    return Color(color).darken(...args).hex();
+}
+
+function mix(color, subject, percent) {
+    return Color(color).mix(Color(subject), percent).hex();
+}
 
 module.exports = plugin(function({ addComponents, theme }) {
     function variant(key, backgroundColor, borderColor, color) {
         borderColor = borderColor || backgroundColor;
-        color = color || `contrast(${backgroundColor})`;
+        color = color || contrast(backgroundColor);
 
         Object.assign(component[':root'], {
             [`--btn-${key}-background-color`]: backgroundColor,
             [`--btn-${key}-border-color`]: borderColor,
             [`--btn-${key}-color`]: color,
-            [`--btn-${key}-hover-background-color`]: `darken(${backgroundColor}, .075)`,
-            [`--btn-${key}-hover-border-color`]: `darken(${borderColor}, .1)`,
-            [`--btn-${key}-hover-color`]: `darken(var(--btn-${key}-color), .1)`,
-            [`--btn-${key}-active-background-color`]: `darken(${backgroundColor}, .1)`,
-            [`--btn-${key}-active-border-color`]: `darken(${borderColor}, .125)`,
-            [`--btn-${key}-active-color`]: `var(--btn-${key}-color)`,
-            [`--btn-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(mix(var(--btn-${key}-active-color), var(--btn-${key}-active-border-color), .85), .5)`
+            [`--btn-${key}-hover-background-color`]: darken(backgroundColor, .075),
+            [`--btn-${key}-hover-border-color`]: darken(borderColor, .1),
+            [`--btn-${key}-hover-color`]: darken(color, .1),
+            [`--btn-${key}-active-background-color`]: darken(backgroundColor, .1),
+            [`--btn-${key}-active-border-color`]: darken(borderColor, .125),
+            [`--btn-${key}-active-color`]: color,
+            [`--btn-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(${mix(color, darken(borderColor, .125), .85)}, .5)`
         });
 
         Object.assign(component, {
@@ -68,10 +83,10 @@ module.exports = plugin(function({ addComponents, theme }) {
         Object.assign(component[':root'], {
             [`--btn-outline-${key}-color`]: color,
             [`--btn-outline-${key}-border-color`]: color,
-            [`--btn-outline-${key}-hover-color`]: `contrast(${color})`,
+            [`--btn-outline-${key}-hover-color`]: contrast(color),
             [`--btn-outline-${key}-active-background-color`]: color,
             [`--btn-outline-${key}-active-border-color`]: color,
-            [`--btn-outline-${key}-active-color`]: `contrast(${color})`,
+            [`--btn-outline-${key}-active-color`]: contrast(color),
             [`--btn-outline-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(${color}, .5)`
         });
         
@@ -142,7 +157,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             '--btn-lg-border-radius': theme('btn.lg.borderRadius'),
 
             '--btn-focus-width': `${theme('btn.focus.width')}`,
-            '--btn-focus-box-shadow': `0 0 0 var(--btn-focus-width) rgba(mix(#fff, ${defaultVariations.primary}, .85), .5)`,
+            '--btn-focus-box-shadow': `0 0 0 var(--btn-focus-width) rgba(${mix('#fff', variations.primary, .85)}, .5)`,
             '--btn-focus-outline': `${theme('btn.focus.outline')}`,
 
             '--btn-hover-text-decoration': theme('btn.hover.textDecoration'),
@@ -186,7 +201,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             border: `var(--btn-border-width) solid transparent`,
             borderRadius: 'var(--btn-border-radius)',
             transition: 'var(--btn-transition)',
-            boxShadow: null, //theme('btn.enableShadows') ? 'var(--btn-box-shadow)' : null,
+            boxShadow: theme('btn.enableShadows') ? 'var(--btn-box-shadow)' : null,
 
             '&:hover': {
                 color: theme('colors.gray.900', colors.gray[900]),
@@ -214,10 +229,21 @@ module.exports = plugin(function({ addComponents, theme }) {
         }
     };
     
-    Object.entries(theme('variations', defaultVariations))
+    Object.entries(theme('variations', variations))
         .forEach(([key, value]) => {
             variant(key, value);
             outlineVariant(key, value);
+        });
+
+    Object.entries(reduce(theme('colors', colors)))
+        .forEach(([key, value]) => {
+            try {
+                variant(key, value);
+                outlineVariant(key, value);
+            }
+            catch (e) {
+                // Ignore the error
+            }
         });
    
     Object.assign(component, {
@@ -337,7 +363,7 @@ module.exports = plugin(function({ addComponents, theme }) {
                 textDecoration: 'none',
                 fontWeight: 'normal',
                 hover: {
-                    color: `darken(var(--btn-link-color), .15)`,
+                    color: `var(--btn-link-color)`,
                     textDecoration: 'underline'
                 },
                 focus: {

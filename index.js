@@ -1,2 +1,5 @@
-import Btn from './src/Btn';
-export default Btn;
+import Btn from './src/Btn.vue';
+
+export {
+    Btn
+};

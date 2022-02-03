@@ -4,9 +4,9 @@ module.exports = {
     plugins: [
         require('postcss-nested'),
         require('tailwindcss'),
-        require('postcss-css-variables')({
-            preserve: 'computed'
-        }),
+        // require('postcss-css-variables')({
+        //     preserve: 'computed'
+        // }),
         require('postcss-functions')({
             functions: {
                 darken(color, ...args) {
