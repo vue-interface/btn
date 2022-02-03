@@ -6,23 +6,22 @@
         <title>Btn</title>
     </head>
     <body>
-        <div id="app" class="container mx-auto">
+        <div id="app" class="container mx-auto mb-6">
             <h1 class="text-4xl mb-6">btn</h1>
 
-            <h3 class="text-2xl">Color Variants</h3>
+            <h3 class="text-2xl mb-3">Color Variants</h3>
 
-            <btn type="button" size="lg" variant="primary">Primary</btn>
+            <btn type="button" variant="primary">Primary</btn>
             <btn type="button" variant="secondary">Secondary</btn>
             <btn type="button" variant="success">Success</btn>
             <btn type="button" variant="danger">Danger</btn>
             <btn type="button" variant="warning">Warning</btn>
             <btn type="button" variant="info">Info</btn>
             <btn type="button" variant="light">Light</btn>
-            <btn type="button" variant="dark">Dark</btn>
-            
+            <btn type="button" variant="dark">Dark</btn>            
             <btn type="button" variant="link">Link</btn>
 
-            <h2>Outlined Buttons</h2>
+            <h3 class="text-2xl mt-6 mb-3">Outline Buttons</h3>
 
             <btn type="button" variant="primary" outline>Primary</btn>
             <btn type="button" variant="secondary" outline>Secondary</btn>
@@ -31,60 +30,45 @@
             <btn type="button" variant="warning" outline>Warning</btn>
             <btn type="button" variant="info" outline>Info</btn>
             <btn type="button" variant="light" outline>Light</btn>
-            <btn type="button" variant="dark" outline>Dark</btn>
+            <btn type="button" variant="dark" outline>Dark</btn>          
+            <btn type="button" variant="link">Link</btn>
         
-            
-            <!--
-            <h2>Block Buttons</h2>
+            <h3 class="text-2xl mt-6 mb-3">Block Buttons</h3>
 
             <btn type="button" variant="primary" block>Primary</btn>
-            <btn type="button" variant="secondary" block outline>Secondary</btn>
+            <btn type="button" variant="secondary" block>Secondary</btn>
+            <btn type="button" variant="success" block>Success</btn>
+            <btn type="button" variant="danger" block>Danger</btn>
+            <btn type="button" variant="warning" block>Warning</btn>
+            <btn type="button" variant="info" block>Info</btn>
+            <btn type="button" variant="light" block>Light</btn>
+            <btn type="button" variant="dark" block>Dark</btn>            
+            <btn type="button" variant="link" block>Link</btn>
+            
+            <h3 class="text-2xl mt-6 mb-3">Sizes</h3>
 
-            <hr>
+            <btn variant="primary" size="xs">xs</btn>
+            <btn variant="primary" size="sm">sm</btn>
+            <btn variant="primary">base</btn>
+            <btn variant="primary" size="lg">lg</btn>
+            <btn variant="primary" size="xl">xl</btn>
+            <btn variant="primary" size="2xl">2xl</btn>
+            <btn variant="primary" size="3xl">3xl</btn>
+            <btn variant="primary" size="4xl">4xl</btn>
 
-            <h3>Checkbox and Radio buttons</h3>
-
-            <p>Checked Values: {{form.checkbox}}</p>
-
-            <btn-group toggle>
-                <btn label>
-                    <input v-model="form.checkbox" type="checkbox" name="checkbox[]" value="1" /> Checkbox 1
-                </btn>
-                <btn label>
-                    <input v-model="form.checkbox" type="checkbox" name="checkbox[]" value="2" /> Checkbox 2
-                </btn>
-                <btn label>
-                    <input v-model="form.checkbox" type="checkbox" name="checkbox[]" value="3" /> Checkbox 3
-                </btn>
-            </btn-group>
-
-            <hr>
-
-            <h3>Sizes</h3>
-
-            <btn size="sm" variant="primary">Small</btn>
-            <btn size="md" variant="primary">Medium</btn>
-            <btn size="lg" variant="primary">Large</btn>
-
-            <h3>Block Sizes</h3>
+            <h3 class="text-2xl mt-6 mb-3">Block Sizes</h3>
 
             <btn type="button" variant="primary" size="sm" block>Small</btn>
-            <btn type="button" variant="primary" size="md" block>Medium</btn>
+            <btn type="button" variant="primary" block>Medium</btn>
             <btn type="button" variant="primary" size="lg" block>Large</btn>
 
-            <hr>
-
-            <h3>Active</h3>
+            <h3 class="text-2xl mt-6 mb-3">Active</h3>
 
             <btn variant="primary" active>Active</btn>
 
-            <hr>
-
-            <h3>Disabled</h3>
+            <h3 class="text-2xl mt-6 mb-3">Disabled</h3>
 
             <btn variant="primary" disabled>Disabled</btn>
-            -->
-
         </div>
         
         <script type="module">

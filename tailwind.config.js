@@ -11,8 +11,11 @@ module.exports = {
     plugins: [
         require('./tailwindcss')
     ],
-    safelist: safelist(Object.assign({},
-        require('@vue-interface/variant/tailwindcss/variations'),
-        require('@vue-interface/variant/tailwindcss/colors')
-    ))
+    safelist: [
+        ...safelist(Object.assign({},
+            require('@vue-interface/variant/tailwindcss/variations'),
+            require('@vue-interface/variant/tailwindcss/colors'),
+        )),
+        ...Object.keys(require('./tailwindcss/sizes')).map(size => `btn-${size}`)
+    ]
 };

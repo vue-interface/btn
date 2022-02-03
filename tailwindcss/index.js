@@ -4,6 +4,7 @@ const { boxShadow } = require('tailwindcss/defaultTheme');
 const variations = require('@vue-interface/variant/tailwindcss/variations');
 const reduce = require('@vue-interface/variant/tailwindcss/reduce');
 const Color = require('color');
+const kebabCase = require('lodash.kebabcase');
 
 function contrast(color, light, dark) {
     return Color(color).luminosity() > .5 ? (dark || 'black') : (light || 'white');
@@ -123,62 +124,72 @@ module.exports = plugin(function({ addComponents, theme }) {
         });
     }
 
+    const vars = Object.assign({
+        '--btn-display': theme('btn.display'),
+        '--btn-color': theme('btn.color'),
+        '--btn-padding-y': theme('btn.paddingY'),
+        '--btn-padding-x': theme('btn.paddingX'),
+        '--btn-background-color': theme('btn.backgroundColor'),
+        '--btn-border-radius': theme('btn.borderRadius'),
+        '--btn-font-family': theme('btn.fontFamily'),
+        '--btn-font-size':  theme('btn.fontSize'),
+        '--btn-text-align': theme('btn.textAlign'),
+        '--btn-text-decoration': theme('btn.textDecoration'),
+        '--btn-line-height': `${theme('btn.lineHeight')}`,
+        '--btn-white-space': theme('btn.whiteSpace'),
+        '--btn-vertical-align': theme('btn.verticalAlign'),
+        '--btn-user-select': theme('btn.userSelect'),
+        '--btn-background-color': theme('btn.backgroundColor'),
+        '--btn-border-width': theme('btn.borderWidth'),
+        '--btn-font-weight': theme('btn.fontWeight'),
+        '--btn-box-shadow': theme('btn.boxShadow'),
+        '--btn-block-spacing-y': theme('btn.blockSpacingY'),
+        '--btn-transition': theme('btn.transition'),
+
+        // '--btn-sm-padding-y': theme('btn.sm.paddingY'),
+        // '--btn-sm-padding-x': theme('btn.sm.paddingX'),
+        // '--btn-sm-font-size': theme('btn.sm.fontSize'),
+        // '--btn-sm-border-radius': theme('btn.sm.borderRadius'),
+
+        // '--btn-lg-padding-y': theme('btn.lg.paddingY'),
+        // '--btn-lg-padding-x': theme('btn.lg.paddingX'),
+        // '--btn-lg-font-size': theme('btn.lg.fontSize'),
+        // '--btn-lg-border-radius': theme('btn.lg.borderRadius'),
+
+        '--btn-focus-width': `${theme('btn.focus.width')}`,
+        '--btn-focus-box-shadow': `0 0 0 var(--btn-focus-width) rgba(${mix('#fff', variations.primary, .85)}, .5)`,
+        '--btn-focus-outline': `${theme('btn.focus.outline')}`,
+
+        '--btn-hover-text-decoration': theme('btn.hover.textDecoration'),
+
+        '--btn-disabled-opacity': `${theme('btn.disabled.opacity')}`,
+
+
+        '--btn-active-box-shadow': theme('btn.active.boxShadow'),
+
+        '--btn-link-color': theme('btn.link.color'),
+        '--btn-link-hover-color': theme('btn.link.hover.color'),
+        '--btn-link-hover-text-decoration': theme('btn.link.hover.textDecoration'),
+        '--btn-link-focus-text-decoration': theme('btn.link.hover.textDecoration'),
+        '--btn-link-disabled-color': theme('btn.link.disabled.color'),
+        '--btn-link-text-decoration': theme('btn.link.textDecoration'),
+        '--btn-link-font-weight': theme('btn.link.fontWeight'),
+
+        '--btn-block-display': theme('btn.block.display'),
+        '--btn-block-width': theme('btn.block.width'),
+        '--btn-block-margin-top': theme('btn.block.marginTop'),
+    });
+
+    Object.entries(require('./sizes')).reduce((carry, [size, props]) => {
+        return Object.entries(props).reduce((carry, [prop, value]) => {
+            return Object.assign(carry, {
+                [`--btn-${size}-${kebabCase(prop)}`]: value
+            });
+        }, carry);
+    }, vars);
+    
     const component = {
-        ':root': {
-            '--btn-display': theme('btn.display'),
-            '--btn-color': theme('btn.color'),
-            '--btn-padding-y': theme('btn.paddingY'),
-            '--btn-padding-x': theme('btn.paddingX'),
-            '--btn-background-color': theme('btn.backgroundColor'),
-            '--btn-border-radius': theme('btn.borderRadius'),
-            '--btn-font-family': theme('btn.fontFamily'),
-            '--btn-font-size':  theme('btn.fontSize'),
-            '--btn-text-align': theme('btn.textAlign'),
-            '--btn-text-decoration': theme('btn.textDecoration'),
-            '--btn-line-height': `${theme('btn.lineHeight')}`,
-            '--btn-white-space': theme('btn.whiteSpace'),
-            '--btn-vertical-align': theme('btn.verticalAlign'),
-            '--btn-user-select': theme('btn.userSelect'),
-            '--btn-background-color': theme('btn.backgroundColor'),
-            '--btn-border-width': theme('btn.borderWidth'),
-            '--btn-font-weight': theme('btn.fontWeight'),
-            '--btn-box-shadow': theme('btn.boxShadow'),
-            '--btn-block-spacing-y': theme('btn.blockSpacingY'),
-            '--btn-transition': theme('btn.transition'),
-
-            '--btn-sm-padding-y': theme('btn.sm.paddingY'),
-            '--btn-sm-padding-x': theme('btn.sm.paddingX'),
-            '--btn-sm-font-size': theme('btn.sm.fontSize'),
-            '--btn-sm-border-radius': theme('btn.sm.borderRadius'),
-
-            '--btn-lg-padding-y': theme('btn.lg.paddingY'),
-            '--btn-lg-padding-x': theme('btn.lg.paddingX'),
-            '--btn-lg-font-size': theme('btn.lg.fontSize'),
-            '--btn-lg-border-radius': theme('btn.lg.borderRadius'),
-
-            '--btn-focus-width': `${theme('btn.focus.width')}`,
-            '--btn-focus-box-shadow': `0 0 0 var(--btn-focus-width) rgba(${mix('#fff', variations.primary, .85)}, .5)`,
-            '--btn-focus-outline': `${theme('btn.focus.outline')}`,
-
-            '--btn-hover-text-decoration': theme('btn.hover.textDecoration'),
-
-            '--btn-disabled-opacity': `${theme('btn.disabled.opacity')}`,
-
-
-            '--btn-active-box-shadow': theme('btn.active.boxShadow'),
-
-            '--btn-link-color': theme('btn.link.color'),
-            '--btn-link-hover-color': theme('btn.link.hover.color'),
-            '--btn-link-hover-text-decoration': theme('btn.link.hover.textDecoration'),
-            '--btn-link-focus-text-decoration': theme('btn.link.hover.textDecoration'),
-            '--btn-link-disabled-color': theme('btn.link.disabled.color'),
-            '--btn-link-text-decoration': theme('btn.link.textDecoration'),
-            '--btn-link-font-weight': theme('btn.link.fontWeight'),
-
-            '--btn-block-display': theme('btn.block.display'),
-            '--btn-block-width': theme('btn.block.width'),
-            '--btn-block-margin-top': theme('btn.block.marginTop'),
-        },
+        ':root': vars,
 
         //
         // Base styles
@@ -273,7 +284,7 @@ module.exports = plugin(function({ addComponents, theme }) {
         //
         // Block button
         //
-        '.btn-block': {
+        '.btn-block, .block': {
             display: 'var(--btn-block-display)',
             width: 'var(--btn-block-width)',
         
@@ -281,28 +292,19 @@ module.exports = plugin(function({ addComponents, theme }) {
             '+ .btn-block': {
                 marginTop: 'var(--btn-block-margin-top)'
             }
-        },
-  
-        //
-        // Button Sizes
-        //  
-        '.btn-sm': {
-            padding: 'var(--btn-sm-padding-y) var(--btn-sm-padding-x)',
-            border: 'var(--btn-sm-border-radius)',
-            fontSize: 'var(--btn-sm-font-size)',
-        },
-
-        '.btn-lg': {
-            padding: 'var(--btn-lg-padding-y) var(--btn-lg-padding-x)',
-            border: 'var(--btn-lg-border-radius)',
-            fontSize: 'var(--btn-lg-font-size)',
         }
     });
+
+    Object.entries(theme('btn.sizes')).reduce((carry, [size, props]) => {
+        return Object.assign(carry, {
+            [`.btn-${size}`]: props
+        });
+    }, component);
 
     addComponents(component);
 }, {
     theme: {
-        btn: theme => ({
+        btn: theme => Object.assign({
             enablePointers: true,
             enableGradients: false,
             enableShadows: false,
@@ -325,20 +327,6 @@ module.exports = plugin(function({ addComponents, theme }) {
             borderRadius: theme('form.borderRadius', '.25rem'),
             blockSpacingY: '.5rem',
             transition: 'color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
-
-            sm: {
-                paddingY: theme('form.sm.paddingY', '.25rem'),
-                paddingX: theme('form.sm.paddingX', '.5rem'),
-                fontSize: theme('form.sm.fontSize', '.875rem'),
-                borderRadius: theme('form.sm.borderRadius', '.25rem'),
-            },
-            
-            lg: {
-                paddingY: theme('form.lg.paddingY', '.5rem'),
-                paddingX: theme('form.lg.paddingX', '1rem'),
-                fontSize: theme('form.lg.fontSize', '1.25rem'),
-                borderRadius: theme('form.lg.borderRadius', '.25rem'),
-            },
 
             hover: {
                 textDecoration: 'none'
@@ -379,6 +367,23 @@ module.exports = plugin(function({ addComponents, theme }) {
                 width: '100%',
                 marginTop: '.5rem'
             }
+        }, {
+            sizes: Object.fromEntries(
+                Object.entries(require('./sizes')).map(([size, props]) => {
+                    props = Object.entries(props).reduce((carry, [prop, value]) => {
+                        return Object.assign(carry, {
+                            [prop]: theme(`form.${size}.${prop}`, value)
+                        });
+                    }, {
+                        padding: `${props.paddingY} ${props.paddingX}`
+                    });
+
+                    delete props.paddingX;
+                    delete props.paddingY;
+
+                    return [size, props];
+                })
+            )
         })
     }
 });

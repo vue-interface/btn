@@ -10,7 +10,7 @@ module.exports = function safelist(subject, filter) {
         });
     
     return Object.entries(reduce(filtered))
-        .reduce((carry, key) => {
+        .reduce((carry, [key]) => {
             return [...carry, ...[
                 `btn-${key}`,
                 `btn-outline-${key}`

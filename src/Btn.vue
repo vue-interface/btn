@@ -91,16 +91,6 @@ export default {
         to: [Object, String],
 
         /**
-         * The size name.
-         *
-         * @param {String}
-         */
-        size: {
-            type: String,
-            default: 'md'
-        },
-
-        /**
          * The type attribute for the button. Not applied if an anchor
          *
          * @property String
