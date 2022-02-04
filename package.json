@@ -8,12 +8,6 @@
   ],
   "main": "./dist/btn.umd.js",
   "module": "./dist/btn.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/btn.es.js",
-      "require": "./dist/btn.umd.js"
-    }
-  },
   "browserslist": "last 2 versions, > 0.5%, ie >= 11",
   "scripts": {
     "dev": "vite",

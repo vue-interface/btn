@@ -11,11 +11,11 @@ function contrast(color, light, dark) {
 }
 
 function darken(color, ...args) {
-    return Color(color).darken(...args).hex();
+    return Color(color).darken(...args).string();
 }
 
 function mix(color, subject, percent) {
-    return Color(color).mix(Color(subject), percent).hex();
+    return Color(color).mix(Color(subject), percent).string();
 }
 
 module.exports = plugin(function({ addComponents, theme }) {
@@ -23,18 +23,18 @@ module.exports = plugin(function({ addComponents, theme }) {
         borderColor = borderColor || backgroundColor;
         color = color || contrast(backgroundColor);
 
-        Object.assign(component[':root'], {
-            [`--btn-${key}-background-color`]: backgroundColor,
-            [`--btn-${key}-border-color`]: borderColor,
-            [`--btn-${key}-color`]: color,
-            [`--btn-${key}-hover-background-color`]: darken(backgroundColor, .075),
-            [`--btn-${key}-hover-border-color`]: darken(borderColor, .1),
-            [`--btn-${key}-hover-color`]: darken(color, .1),
-            [`--btn-${key}-active-background-color`]: darken(backgroundColor, .1),
-            [`--btn-${key}-active-border-color`]: darken(borderColor, .125),
-            [`--btn-${key}-active-color`]: color,
-            [`--btn-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(${mix(color, darken(borderColor, .125), .85)}, .5)`
-        });
+        // Object.assign(component['*, ::before, ::after'], {
+        //     [`--btn-${key}-background-color`]: backgroundColor,
+        //     [`--btn-${key}-border-color`]: borderColor,
+        //     [`--btn-${key}-color`]: color,
+        //     [`--btn-${key}-hover-background-color`]: darken(backgroundColor, .075),
+        //     [`--btn-${key}-hover-border-color`]: darken(borderColor, .1),
+        //     [`--btn-${key}-hover-color`]: darken(color, .1),
+        //     [`--btn-${key}-active-background-color`]: darken(backgroundColor, .1),
+        //     [`--btn-${key}-active-border-color`]: darken(borderColor, .125),
+        //     [`--btn-${key}-active-color`]: color,
+        //     [`--btn-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(${mix(color, darken(borderColor, .125), .85)}, .5)`
+        // });
 
         Object.assign(component, {
             [`.btn-${key}`]: {
@@ -42,31 +42,31 @@ module.exports = plugin(function({ addComponents, theme }) {
                 borderColor,
                 backgroundColor,
                 boxShadow: theme('btn.enableShadows') ? 'var(--btn-box-shadow)' : null,
-                backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, rgba(${theme('colors.white', colors.white)}, .15), rgba(${theme('colors.white', colors.white)}, 0))` : undefined,
+                backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, ${Color(theme('colors.white', colors.white)).fade(.15)}, ${theme('colors.white', colors.white)})` : undefined,
         
                 '&:hover': {
-                    color: `var(--btn-${key}-hover-color)`,
-                    backgroundColor: `var(--btn-${key}-hover-background-color)`,
-                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, rgba(${theme('colors.white', colors.white)}, .15), rgba(${theme('colors.white', colors.white)}, 0))` : undefined,
-                    borderColor: `var(--btn-${key}-hover-border-color)`
+                    color: darken(color, .1),
+                    backgroundColor: darken(backgroundColor, .075),
+                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, ${Color(theme('colors.white', colors.white)).fade(.15)}, ${theme('colors.white', colors.white)})` : undefined,
+                    borderColor: darken(borderColor, .1)
                 },
 
                 '&:focus, &.focus': {
-                    color: `var(--btn-${key}-active-color)`,
-                    backgroundColor: `var(--btn-${key}-active-background-color)`,
-                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, rgba(${theme('colors.white', colors.white)}, .15), rgba(${theme('colors.white', colors.white)}, 0))` : undefined,
-                    borderColor: `var(--btn-${key}-active-border-color)`,
-                    boxShadow: theme('btn.enableShadows') ? 'var(--btn-box-shadow), ' : '' + `var(--btn-${key}-focus-box-shadow)`,
+                    color,
+                    backgroundColor: darken(backgroundColor, .1),
+                    backgroundImage: theme('btn.enableGradients') ? `linear-gradient(180deg, ${Color(theme('colors.white', colors.white)).fade(.15)}, ${theme('colors.white', colors.white)})` : undefined,
+                    borderColor: darken(borderColor, .125),
+                    boxShadow: theme('btn.enableShadows') ? 'var(--btn-box-shadow), ' : '' + `0 0 0 var(--btn-focus-width) ${Color(mix(color, darken(borderColor, .125), .85)).fade(.5)}`,
                 },
 
                 '&:active, &.active, .show > &.dropdown-toggle': {
-                    color: `var(--btn-${key}-active-color)`,
-                    backgroundColor: `var(--btn-${key}-active-background-color)`,
+                    color,
+                    backgroundColor: darken(backgroundColor, .1),
                     backgroundImage: theme('btn.enableGradients') ? 'none' : undefined,
-                    borderColor: `var(--btn-${key}-active-border-color)`,
+                    borderColor: darken(borderColor, .125),
 
                     '&:focus': {
-                        boxShadow: theme('btn.enableShadows') ? 'var(--btn-active-box-shadow), ' : '' + `var(--btn-${key}-focus-box-shadow)`
+                        boxShadow: theme('btn.enableShadows') ? 'var(--btn-active-box-shadow), ' : '' + `0 0 0 var(--btn-focus-width) ${Color(mix(color, darken(borderColor, .125), .85)).fade(.5)}`
                     }
                 },
 
@@ -81,15 +81,15 @@ module.exports = plugin(function({ addComponents, theme }) {
     }
 
     function outlineVariant(key, color) {
-        Object.assign(component[':root'], {
-            [`--btn-outline-${key}-color`]: color,
-            [`--btn-outline-${key}-border-color`]: color,
-            [`--btn-outline-${key}-hover-color`]: contrast(color),
-            [`--btn-outline-${key}-active-background-color`]: color,
-            [`--btn-outline-${key}-active-border-color`]: color,
-            [`--btn-outline-${key}-active-color`]: contrast(color),
-            [`--btn-outline-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(${color}, .5)`
-        });
+        // Object.assign(component['*, ::before, ::after'], {
+        //     [`--btn-outline-${key}-color`]: color,
+        //     [`--btn-outline-${key}-border-color`]: color,
+        //     [`--btn-outline-${key}-hover-color`]: contrast(color),
+        //     [`--btn-outline-${key}-active-background-color`]: color,
+        //     [`--btn-outline-${key}-active-border-color`]: color,
+        //     [`--btn-outline-${key}-active-color`]: contrast(color),
+        //     [`--btn-outline-${key}-focus-box-shadow`]: `0 0 0 var(--btn-focus-width) rgba(${color}, .5)`
+        // });
         
         Object.assign(component, {
             [`.btn-outline-${key}`]: {
@@ -97,22 +97,22 @@ module.exports = plugin(function({ addComponents, theme }) {
                 borderColor: color,
             
                 '&:hover': {
-                    color: `var(--btn-outline-${key}-hover-color)`,
-                    backgroundColor: `var(--btn-outline-${key}-active-background-color)`,
-                    borderColor: `var(--btn-outline-${key}-active-border-color)`
+                    color: contrast(color),
+                    backgroundColor: color,
+                    borderColor: color
                 },
           
                 '&:focus, &.focus': {
-                    boxShadow: `0 0 0 var(--btn-focus-width) rgba(${color}, .5)`
+                    boxShadow: `0 0 0 var(--btn-focus-width) ${Color(color).fade(.5)}`
                 },
           
                 '&:active, &.active, &.dropdown-toggle.show': {
-                    color: `var(--btn-outline-${key}-active-color)`,
-                    backgroundColor: `var(--btn-outline-${key}-active-background-color)`,
-                    bordercolor: `var(--btn-outline-${key}-active-border-color)`,
+                    color: contrast(color),
+                    backgroundColor: color,
+                    bordercolor: color,
           
                     '&:focus': {
-                        boxShadow: theme('btn.enableShadows') ? 'var(--btn-active-box-shadow), ' : '' + `var(--btn-outline-${key}-focus-box-shadow)`
+                        boxShadow: theme('btn.enableShadows') ? 'var(--btn-active-box-shadow), ' : '' + `0 0 0 var(--btn-focus-width) ${Color(color).fade(.5)}`
                     }
                 },
           
@@ -157,7 +157,7 @@ module.exports = plugin(function({ addComponents, theme }) {
         // '--btn-lg-border-radius': theme('btn.lg.borderRadius'),
 
         '--btn-focus-width': `${theme('btn.focus.width')}`,
-        '--btn-focus-box-shadow': `0 0 0 var(--btn-focus-width) rgba(${mix('#fff', variations.primary, .85)}, .5)`,
+        '--btn-focus-box-shadow': `0 0 0 var(--btn-focus-width) ${Color(mix('#fff', variations.primary, .85)).fade(.5)}`,
         '--btn-focus-outline': `${theme('btn.focus.outline')}`,
 
         '--btn-hover-text-decoration': theme('btn.hover.textDecoration'),
@@ -180,16 +180,21 @@ module.exports = plugin(function({ addComponents, theme }) {
         '--btn-block-margin-top': theme('btn.block.marginTop'),
     });
 
-    Object.entries(require('./sizes')).reduce((carry, [size, props]) => {
-        return Object.entries(props).reduce((carry, [prop, value]) => {
-            return Object.assign(carry, {
-                [`--btn-${size}-${kebabCase(prop)}`]: value
-            });
-        }, carry);
-    }, vars);
+    Object.entries(theme('btn.sizes'))
+        .reduce((carry, [size, props]) => {
+            return Object.entries(props)
+                .filter(([key]) => {
+                    return ['paddingX', 'paddingY'].indexOf(key) === -1;
+                })
+                .reduce((carry, [prop, value]) => {
+                    return Object.assign(carry, {
+                        [`--btn-${size}-${kebabCase(prop)}`]: value
+                    });
+                }, carry);
+        }, vars);
     
     const component = {
-        ':root': vars,
+        '*, ::before, ::after': vars,
 
         //
         // Base styles
@@ -240,13 +245,13 @@ module.exports = plugin(function({ addComponents, theme }) {
         }
     };
     
-    Object.entries(theme('variations', variations))
+    Object.entries(theme('btn.variations', variations))
         .forEach(([key, value]) => {
             variant(key, value);
             outlineVariant(key, value);
         });
 
-    Object.entries(reduce(theme('colors', colors)))
+    Object.entries(reduce(theme('btn.colors', [])))
         .forEach(([key, value]) => {
             try {
                 variant(key, value);
@@ -292,12 +297,21 @@ module.exports = plugin(function({ addComponents, theme }) {
             '+ .btn-block': {
                 marginTop: 'var(--btn-block-margin-top)'
             }
+        },
+
+        '.btn-inline, .inline': {
+            display: 'var(--btn-display)',
+            width: 'auto'
         }
     });
 
-    Object.entries(theme('btn.sizes')).reduce((carry, [size, props]) => {
+    Object.entries(theme('btn.sizes')) .reduce((carry, [size, props]) => {
         return Object.assign(carry, {
-            [`.btn-${size}`]: props
+            [`.btn-${size}`]: Object.fromEntries(
+                Object.entries(props).filter(([key]) => {
+                    return ['paddingX', 'paddingY'].indexOf(key) === -1;
+                })
+            )
         });
     }, component);
 
@@ -323,7 +337,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             userSelect: 'none',
             borderWidth: theme('form.borderWidth', '1px'),
             fontWeight: theme('form.fontWeight', 'normal'),
-            boxShadow: `inset 0 1px 0 rgba(${theme('colors.white', colors.white)}, .15), 0 1px 1px rgba(${theme('colors.black', colors.black)}, .075)`,
+            boxShadow: `inset 0 1px 0 ${Color(theme('colors.white', colors.white)).fade(.15)}, 0 1px 1px ${Color(theme('colors.black', colors.black)).fade(.075)}`,
             borderRadius: theme('form.borderRadius', '.25rem'),
             blockSpacingY: '.5rem',
             transition: 'color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
@@ -337,7 +351,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             },
             
             active: {
-                boxShadow: `inset 0 3px 5px rgba(${theme('colors.black', colors.black)}, .125)`,
+                boxShadow: `inset 0 3px 5px ${Color(theme('colors.black', colors.black)).fade(.125)}`,
             },
 
             focus: {
@@ -366,7 +380,11 @@ module.exports = plugin(function({ addComponents, theme }) {
                 display: 'block',
                 width: '100%',
                 marginTop: '.5rem'
-            }
+            },
+
+            variations,
+
+            colors: {}
         }, {
             sizes: Object.fromEntries(
                 Object.entries(require('./sizes')).map(([size, props]) => {
@@ -378,8 +396,8 @@ module.exports = plugin(function({ addComponents, theme }) {
                         padding: `${props.paddingY} ${props.paddingX}`
                     });
 
-                    delete props.paddingX;
-                    delete props.paddingY;
+                    // delete props.paddingX;
+                    // delete props.paddingY;
 
                     return [size, props];
                 })
