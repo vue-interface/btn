@@ -395,10 +395,7 @@ module.exports = plugin(function({ addComponents, theme }) {
                     }, {
                         padding: `${props.paddingY} ${props.paddingX}`
                     });
-
-                    // delete props.paddingX;
-                    // delete props.paddingY;
-
+                    
                     return [size, props];
                 })
             )
