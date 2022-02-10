@@ -4,7 +4,7 @@ const { boxShadow } = require('tailwindcss/defaultTheme');
 const variations = require('@vue-interface/variant/tailwindcss/variations');
 const reduce = require('@vue-interface/variant/tailwindcss/reduce');
 const Color = require('color');
-const kebabCase = require('lodash.kebabcase');
+const paramCase = require('param-case');
 
 function contrast(color, light, dark) {
     return Color(color).luminosity() > .5 ? (dark || 'black') : (light || 'white');

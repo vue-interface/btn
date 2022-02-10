@@ -1,5 +1,3 @@
-const safelist = require('./tailwindcss/safelist');
-
 module.exports = {
     content: [
         "./index.html"
@@ -11,6 +9,6 @@ module.exports = {
         require('./tailwindcss')
     ],
     safelist: [
-        ...safelist()
+        ...require('./tailwindcss/safelist')()
     ]
 };
