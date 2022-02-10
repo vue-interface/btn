@@ -243,7 +243,7 @@ module.exports = plugin(function({ addComponents, theme }) {
             }
         }
     };
-    
+
     Object.entries(theme('btn.variations', variations))
         .forEach(([key, value]) => {
             variant(key, value);
@@ -382,7 +382,7 @@ module.exports = plugin(function({ addComponents, theme }) {
                 marginTop: '.5rem'
             },
 
-            variations,
+            variations: theme('variations', variations),
 
             colors: {}
         }, {
