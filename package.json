@@ -1,13 +1,13 @@
 {
   "name": "@vue-interface/btn",
   "version": "1.0.6",
-  "description": "An Vue button component.",
+  "description": "A Vue button component.",
   "files": [
     "dist",
     "tailwindcss"
   ],
   "main": "./dist/btn.umd.js",
-  "module": "./dist/btn.es.js",
+  "module": "./index.js",
   "browserslist": "last 2 versions, > 0.5%, ie >= 11",
   "scripts": {
     "dev": "vite",
