@@ -3,7 +3,9 @@
   "version": "1.0.7",
   "description": "A Vue button component.",
   "files": [
+    "index.js",
     "dist",
+    "src",
     "tailwindcss"
   ],
   "main": "./dist/btn.umd.js",
