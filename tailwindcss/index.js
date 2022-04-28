@@ -361,11 +361,11 @@ module.exports = plugin(function({ addComponents, theme }) {
             },
 
             link: {
-                color: '#0d6efd',
+                color: theme('variations.primary', colors.blue['500']),
                 textDecoration: 'none',
                 fontWeight: 'normal',
                 hover: {
-                    color: '#0d6efd',
+                    color: theme('variations.primary', colors.blue['500']),
                     textDecoration: 'underline'
                 },
                 focus: {
