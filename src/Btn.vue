@@ -4,7 +4,7 @@
         :disabled="disabled"
         :class="classes"
         role="button"
-        @click="!$attrs.disabled && $emit('click', $event)">
+        @click="!disabled && $emit('click', $event)">
         <slot>{{ label }}</slot>
     </component>
 </template>
