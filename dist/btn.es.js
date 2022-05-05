@@ -46,7 +46,7 @@ var render = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _c(_vm.component, { tag: "component", class: _vm.classes, attrs: { "role": "button" }, on: { "click": function($event) {
+  return _c(_vm.component, { tag: "component", class: _vm.classes, attrs: { "disabled": _vm.disabled, "role": "button" }, on: { "click": function($event) {
     !_vm.$attrs.disabled && _vm.$emit("click", $event);
   } } }, [_vm._t("default", function() {
     return [_vm._v(_vm._s(_vm.label))];
@@ -113,6 +113,7 @@ const __vue2_script = {
   props: {
     active: Boolean,
     block: Boolean,
+    disabled: Boolean,
     label: String,
     outline: Boolean,
     tag: String,
@@ -127,8 +128,9 @@ const __vue2_script = {
         "btn",
         this.variantClass,
         this.sizeableClass,
-        this.block ? "btn-block" : "",
-        this.active ? "active" : ""
+        this.active && "active",
+        this.block && "btn-block",
+        this.disabled && "disabled"
       ];
     },
     component() {

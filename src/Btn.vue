@@ -1,6 +1,7 @@
 <template>
     <component
         :is="component"
+        :disabled="disabled"
         :class="classes"
         role="button"
         @click="!$attrs.disabled && $emit('click', $event)">
@@ -35,6 +36,13 @@ export default {
          * @property {Boolean}
          */
         block: Boolean,
+
+        /**
+         * Disable the button.
+         *
+         * @property {Boolean}
+         */
+        disabled: Boolean,
 
         /**
          * The button label.
@@ -75,8 +83,9 @@ export default {
                 'btn',
                 this.variantClass,
                 this.sizeableClass,
-                this.block ? 'btn-block' : '',
-                this.active ? 'active' : '',
+                this.active && 'active',
+                this.block && 'btn-block',
+                this.disabled && 'disabled',
             ];
         },
 
