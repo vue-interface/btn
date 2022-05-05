@@ -1,28 +1,11 @@
 <template>
-    <router-link
-        v-if="to"
-        :to="to"
-        :disabled="disabled"
+    <component
+        :is="component"
         :class="classes"
         role="button"
-        @click="onClick">
-        <slot />
-    </router-link>
-    <a
-        v-else-if="href"
-        :href="href"
-        :disabled="disabled"
-        :class="classes"
-        role="button"
-        @click="onClick">
-        <slot />
-    </a>
-    <label v-else-if="label" :disabled="disabled" :class="classes" role="button" @click="onClick">
-        <slot />
-    </label>
-    <button v-else :type="type" :disabled="disabled" :class="classes" @click="onClick">
-        <slot />
-    </button>
+        @click="!$attrs.disabled && $emit('click', $event)">
+        <slot>{{ label }}</slot>
+    </component>
 </template>
 
 <script>
@@ -39,71 +22,53 @@ export default {
     ],
 
     props: {
-
         /**
-         * Display button with active state
+         * Display button with active state.
          *
-         * @property String
+         * @property {Boolean}
          */
         active: Boolean,
 
         /**
-         * Display button with blocked state
+         * Display button with blocked state.
          *
-         * @property String
+         * @property {Boolean}
          */
         block: Boolean,
 
         /**
-         * Display button with disabled state
+         * The button label.
          *
-         * @property String
+         * @property {String}
          */
-        disabled: Boolean,
+        label: String,
 
         /**
-         * If an href is passed, button is an router-link element
+         * Display as an outline button.
          *
-         * @property Boolean
-         */
-        href: String,
-
-        /**
-         * Should use <label> as the element for the button. Used for inputs
-         * wrappers (toggles).
-         *
-         * @property Boolean
-         */
-        label: Boolean,
-
-        /**
-         * Display as an outline button
-         *
-         * @property String
+         * @property {Boolean}
          */
         outline: Boolean,
 
         /**
-         * If an to is passed, button is an router-link element
+         * The HTML tag.
          *
-         * @property Boolean
+         * @property {String}
          */
-        to: [Object, String],
+        tag: String,
 
         /**
-         * The type attribute for the button. Not applied if an anchor
-         *
-         * @property String
+         * The button variant.
+         * 
+         * @property {String}
          */
-        type: String
-
+        variant: {
+            type: String,
+            default: 'primary'
+        }
     },
 
     computed: {
-
-        variantClassPrefix() {
-            return this.variantPrefix + (this.outline ? '-outline' : '');
-        },
 
         classes() {
             return [
@@ -113,20 +78,27 @@ export default {
                 this.block ? 'btn-block' : '',
                 this.active ? 'active' : '',
             ];
-        }
+        },
 
-    },
-
-    methods: {
-
-        onClick(event) {
-            if(!this.disabled) {
-                this.$emit('click', event);
+        component() {
+            if(this.tag) {
+                return this.tag;
             }
-            else {
-                event.preventDefault();
+
+            if(this.$attrs.to) {
+                return 'router-link';
             }
-        }
+
+            if(this.$attrs.href) {
+                return 'a';
+            }
+
+            return 'button';
+        },
+
+        variantClassPrefix() {
+            return this.variantPrefix + (this.outline ? '-outline' : '');
+        },
 
     }
 

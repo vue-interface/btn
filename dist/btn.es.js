@@ -46,7 +46,11 @@ var render = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _vm.to ? _c("router-link", { class: _vm.classes, attrs: { "to": _vm.to, "disabled": _vm.disabled, "role": "button" }, on: { "click": _vm.onClick } }, [_vm._t("default")], 2) : _vm.href ? _c("a", { class: _vm.classes, attrs: { "href": _vm.href, "disabled": _vm.disabled, "role": "button" }, on: { "click": _vm.onClick } }, [_vm._t("default")], 2) : _vm.label ? _c("label", { class: _vm.classes, attrs: { "disabled": _vm.disabled, "role": "button" }, on: { "click": _vm.onClick } }, [_vm._t("default")], 2) : _c("button", { class: _vm.classes, attrs: { "type": _vm.type, "disabled": _vm.disabled }, on: { "click": _vm.onClick } }, [_vm._t("default")], 2);
+  return _c(_vm.component, { tag: "component", class: _vm.classes, attrs: { "role": "button" }, on: { "click": function($event) {
+    !_vm.$attrs.disabled && _vm.$emit("click", $event);
+  } } }, [_vm._t("default", function() {
+    return [_vm._v(_vm._s(_vm.label))];
+  })], 2);
 };
 var staticRenderFns = [];
 function normalizeComponent(scriptExports, render2, staticRenderFns2, functionalTemplate, injectStyles, scopeId, moduleIdentifier, shadowMode) {
@@ -109,17 +113,15 @@ const __vue2_script = {
   props: {
     active: Boolean,
     block: Boolean,
-    disabled: Boolean,
-    href: String,
-    label: Boolean,
+    label: String,
     outline: Boolean,
-    to: [Object, String],
-    type: String
+    tag: String,
+    variant: {
+      type: String,
+      default: "primary"
+    }
   },
   computed: {
-    variantClassPrefix() {
-      return this.variantPrefix + (this.outline ? "-outline" : "");
-    },
     classes() {
       return [
         "btn",
@@ -128,15 +130,21 @@ const __vue2_script = {
         this.block ? "btn-block" : "",
         this.active ? "active" : ""
       ];
-    }
-  },
-  methods: {
-    onClick(event) {
-      if (!this.disabled) {
-        this.$emit("click", event);
-      } else {
-        event.preventDefault();
+    },
+    component() {
+      if (this.tag) {
+        return this.tag;
       }
+      if (this.$attrs.to) {
+        return "router-link";
+      }
+      if (this.$attrs.href) {
+        return "a";
+      }
+      return "button";
+    },
+    variantClassPrefix() {
+      return this.variantPrefix + (this.outline ? "-outline" : "");
     }
   }
 };
