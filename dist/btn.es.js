@@ -114,9 +114,9 @@ var render = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _c(_vm.component, { tag: "component", class: _vm.classes, attrs: { "disabled": _vm.disabled, "role": "button" }, on: { "click": function($event) {
+  return _c(_vm.component, _vm._b({ tag: "component", class: _vm.classes, attrs: { "disabled": _vm.disabled, "role": "button" }, on: { "click": function($event) {
     !_vm.disabled && _vm.$emit("click", $event);
-  } } }, [_vm._t("default", function() {
+  } } }, "component", _vm.$attrs, false), [_vm._t("default", function() {
     return [_vm._v(_vm._s(_vm.label))];
   })], 2);
 };

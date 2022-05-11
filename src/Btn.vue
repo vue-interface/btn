@@ -1,6 +1,7 @@
 <template>
     <component
         :is="component"
+        v-bind="$attrs"
         :disabled="disabled"
         :class="classes"
         role="button"
