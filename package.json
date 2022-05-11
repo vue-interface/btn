@@ -40,9 +40,8 @@
   "homepage": "https://github.com/vue-interface/btn/docs#readme",
   "dependencies": {
     "@vue-interface/sizeable": "^1.0.0",
-    "@vue-interface/variant": "^1.1.0",
+    "@vue-interface/variant": "^1.3.0",
     "color": "^4.2.0",
-    "param-case": "^3.0.4",
     "vue": "^2.6.14"
   },
   "devDependencies": {
