@@ -183,7 +183,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                   
             '&:active, &.active, &.dropdown-toggle.show': {
                 backgroundColor: backgroundColor,
-                bordercolor: backgroundColor,
+                borderColor: backgroundColor,
                 color: contrast(backgroundColor),
                   
                 '&:focus': {
