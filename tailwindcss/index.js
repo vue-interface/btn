@@ -73,7 +73,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
             
             '&:disabled, &.disabled, fieldset:disabled &': { // stylelint-disable-line selector-no-qualifying-type
                 pointerEvents: 'none',
-                opacity: `${theme('btn.disabled.opacity')}`,
+                opacity: theme('btn.disabled.opacity'),
                 boxShadow: 'none'
             }
         }, 
