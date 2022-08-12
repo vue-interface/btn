@@ -11,15 +11,17 @@
 
             <h3 class="text-2xl mb-3">Color Variants</h3>
 
-            <btn variant="primary">Primary</btn>
-            <btn variant="secondary">Secondary</btn>
-            <btn variant="success">Success</btn>
-            <btn variant="danger">Danger</btn>
-            <btn variant="warning">Warning</btn>
-            <btn variant="info">Info</btn>
-            <btn variant="light">Light</btn>
-            <btn variant="dark">Dark</btn> 
-            <btn variant="link">Link</btn>
+            <div class="flex gap-2">
+                <btn variant="primary">Primary</btn>
+                <btn variant="secondary">Secondary</btn>
+                <btn variant="success">Success</btn>
+                <btn variant="danger">Danger</btn>
+                <btn variant="warning">Warning</btn>
+                <btn variant="info">Info</btn>
+                <btn variant="light">Light</btn>
+                <btn variant="dark">Dark</btn> 
+                <btn variant="link">Link</btn>
+            </div>
 
             <h3 class="text-2xl mt-6 mb-3">Variant Shades</h3>
 
@@ -36,15 +38,17 @@
 
             <h3 class="text-2xl mt-6 mb-3">Outline Buttons</h3>
 
-            <btn variant="primary" outline>Primary</btn>
-            <btn variant="secondary" outline>Secondary</btn>
-            <btn variant="success" outline>Success</btn>
-            <btn variant="danger" outline>Danger</btn>
-            <btn variant="warning" outline>Warning</btn>
-            <btn variant="info" outline>Info</btn>
-            <btn variant="light" outline>Light</btn>
-            <btn variant="dark" outline>Dark</btn>          
-            <btn variant="link">Link</btn>
+            <div class="flex gap-2">
+                <btn variant="primary" outline>Primary</btn>
+                <btn variant="secondary" outline>Secondary</btn>
+                <btn variant="success" outline>Success</btn>
+                <btn variant="danger" outline>Danger</btn>
+                <btn variant="warning" outline>Warning</btn>
+                <btn variant="info" outline>Info</btn>
+                <btn variant="light" outline>Light</btn>
+                <btn variant="dark" outline>Dark</btn>          
+                <btn variant="link">Link</btn>
+            </div>
 
             <h3 class="text-2xl mt-6 mb-3">Outline Variant Shades</h3>
 
@@ -73,14 +77,16 @@
             
             <h3 class="text-2xl mt-6 mb-3">Sizes</h3>
 
-            <btn size="xs">xs</btn>
-            <btn size="sm">sm</btn>
-            <btn>base</btn>
-            <btn size="lg">lg</btn>
-            <btn size="xl">xl</btn>
-            <btn size="2xl">2xl</btn>
-            <btn size="3xl">3xl</btn>
-            <btn size="4xl">4xl</btn>
+            <div class="flex gap-2">
+                <btn size="xs" class="self-center">xs</btn>
+                <btn size="sm" class="self-center">sm</btn>
+                <btn class="self-center">base</btn>
+                <btn size="lg" class="self-center">lg</btn>
+                <btn size="xl" class="self-center">xl</btn>
+                <btn size="2xl" class="self-center">2xl</btn>
+                <btn size="3xl" class="self-center">3xl</btn>
+                <btn size="4xl" class="self-center">4xl</btn>
+            </div>
             
             <h3 class="text-2xl mt-6 mb-3">Responsive Sizes</h3>
 
@@ -107,8 +113,10 @@
 
             <h3 class="text-2xl mt-6 mb-3">Button Type</h3>
 
-            <btn type="submit" class="mr-1">Submit</btn>
-            <btn type="button">Button</btn>
+            <div class="flex gap-2">
+                <btn type="submit">Submit</btn>
+                <btn type="button">Button</btn>
+            </div>
 
             <h3 class="text-2xl mt-6 mb-3">Label Attribute</h3>
 
@@ -120,26 +128,25 @@
 
             <h3 class="text-2xl mt-6 mb-3">Custom Element</h3>
 
-            <btn tag="label">Label</btn>
-
-            <btn tag="label" disabled>Label</btn>
+            <div class="flex gap-2">
+                <btn tag="label">Label</btn>
+                <btn tag="label" disabled>Label</btn>
+            </div>
 
             <h3 class="text-2xl mt-6 mb-3">Click Event</h3>
 
-            <btn class="mr-1" @click="onClick">Enabled</btn>
-            <btn disabled @click="onClick">Disabled</btn>
+            <div class="flex gap-2">
+                <btn @click="onClick">Enabled</btn>
+                <btn disabled @click="onClick">Disabled</btn>
+            </div>
         </div>
         
         <script type="module">
             import './index.css';
-            import Vue from 'vue/dist/vue';
+            import { createApp } from 'vue/dist/vue.esm-bundler.js';
             import { Btn } from './index.js';
             
-            Vue.config.devtools = false;
-            Vue.config.productionTip = false;
-            
-            const vue = new Vue({
-                el: '#app',
+            const vue = createApp({
                 components: {
                     Btn
                 },
@@ -149,6 +156,8 @@
                     }
                 }
             });
+
+            vue.mount('#app');
         </script>
     </body>
 </html>

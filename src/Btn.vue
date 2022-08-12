@@ -4,13 +4,12 @@
         v-bind="$attrs"
         :disabled="disabled"
         :class="classes"
-        role="button"
-        @click="!disabled && $emit('click', $event)">
+        role="button">
         <slot>{{ label }}</slot>
     </component>
 </template>
 
-<script>
+<script lang="ts">
 import { Sizeable } from '@vue-interface/sizeable';
 import { Variant } from '@vue-interface/variant';
 
@@ -37,6 +36,16 @@ export default {
          * @property {Boolean}
          */
         block: Boolean,
+
+        /**
+         * The component prefix.
+         * 
+         * @property {String}
+         */
+        componentPrefix: {
+            type: String,
+            default: 'btn'
+        },
 
         /**
          * Disable the button.
@@ -74,12 +83,17 @@ export default {
         variant: {
             type: String,
             default: 'primary'
-        }
+        },
     },
 
     computed: {
 
-        classes() {
+        /**
+         * Get the button classes.
+         * 
+         * @property {string}
+         */
+        classes(): Array<string> {
             return [
                 'btn',
                 this.variantClass,
@@ -90,13 +104,14 @@ export default {
             ];
         },
 
-        component() {
+        /**
+         * Get the component tag name.
+         * 
+         * @property {string}
+         */
+        component(): string {
             if(this.tag) {
                 return this.tag;
-            }
-
-            if(this.$attrs.to) {
-                return 'router-link';
             }
 
             if(this.$attrs.href) {
@@ -106,9 +121,14 @@ export default {
             return 'button';
         },
 
-        variantClassPrefix() {
-            return this.variantPrefix + (this.outline ? '-outline' : '');
-        },
+        /**
+         * The variant class prefix that accounts for outline buttons.
+         * 
+         * @property {string}
+         */
+        variantClassPrefix(): string {
+            return (this.variantPrefix || this.componentPrefix) + (this.outline ? '-outline' : '');
+        }
 
     }
 

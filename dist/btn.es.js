@@ -1,186 +1,55 @@
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-var __assign = function() {
-  __assign = Object.assign || function __assign2(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-      for (var p in s)
-        if (Object.prototype.hasOwnProperty.call(s, p))
-          t[p] = s[p];
-    }
-    return t;
-  };
-  return __assign.apply(this, arguments);
-};
-function lowerCase(str) {
-  return str.toLowerCase();
-}
-var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
-var DEFAULT_STRIP_REGEXP = /[^A-Z0-9]+/gi;
-function noCase(input, options) {
-  if (options === void 0) {
-    options = {};
-  }
-  var _a = options.splitRegexp, splitRegexp = _a === void 0 ? DEFAULT_SPLIT_REGEXP : _a, _b = options.stripRegexp, stripRegexp = _b === void 0 ? DEFAULT_STRIP_REGEXP : _b, _c = options.transform, transform = _c === void 0 ? lowerCase : _c, _d = options.delimiter, delimiter = _d === void 0 ? " " : _d;
-  var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
-  var start = 0;
-  var end = result.length;
-  while (result.charAt(start) === "\0")
-    start++;
-  while (result.charAt(end - 1) === "\0")
-    end--;
-  return result.slice(start, end).split("\0").map(transform).join(delimiter);
-}
-function replace(input, re, value) {
-  if (re instanceof RegExp)
-    return input.replace(re, value);
-  return re.reduce(function(input2, re2) {
-    return input2.replace(re2, value);
-  }, input);
-}
-function dotCase(input, options) {
-  if (options === void 0) {
-    options = {};
-  }
-  return noCase(input, __assign({
-    delimiter: "."
-  }, options));
-}
-function paramCase(input, options) {
-  if (options === void 0) {
-    options = {};
-  }
-  return dotCase(input, __assign({
-    delimiter: "-"
-  }, options));
-}
-var Sizeable = {
+import { openBlock as n, createBlock as o, resolveDynamicComponent as l, mergeProps as c, withCtx as f, renderSlot as h, createTextVNode as u, toDisplayString as x } from "vue";
+const p = {
   props: {
+    componentPrefix: String,
     size: String,
-    sizePrefix: {
-      type: String,
-      default() {
-        return this.$options.name;
-      }
-    }
+    sizePrefix: String
   },
   computed: {
     sizeableClassPrefix() {
-      return this.sizePrefix && paramCase(this.sizePrefix);
+      return this.sizePrefix || this.componentPrefix;
+    },
+    hasSizeablePrefix() {
+      return this.size && !!this.size.match(
+        new RegExp(`^${this.sizeableClassPrefix}`)
+      );
     },
     sizeableClass() {
-      if (!this.size || !this.sizeableClassPrefix) {
-        return "";
-      }
-      return `${this.sizeableClassPrefix}-${this.size}`;
+      return this.size ? !this.sizeableClassPrefix || this.hasSizeablePrefix ? this.size : `${this.sizeableClassPrefix}-${this.size}` : "";
     }
   }
-};
-var Variant = {
+}, P = {
   props: {
+    componentPrefix: String,
     variant: String,
-    variantPrefix: {
-      type: String,
-      default() {
-        return this.$options.name && this.$options.name.toLowerCase();
-      }
-    }
+    variantPrefix: String
   },
   computed: {
     variantClassPrefix() {
-      return this.variantPrefix;
+      return this.variantPrefix || this.componentPrefix;
+    },
+    hasVariantPrefix() {
+      return this.variant && !!this.variant.match(
+        new RegExp(`^${this.variantClassPrefix}`)
+      );
     },
     variantClass() {
-      if (!this.variant || !this.variantClassPrefix) {
-        return "";
-      }
-      return `${this.variantClassPrefix}-${this.variant}`;
+      return this.variant ? !this.variantClassPrefix || this.hasVariantPrefix ? this.variant : `${this.variantClassPrefix}-${this.variant}` : "";
     }
   }
-};
-var render = function() {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c(_vm.component, _vm._b({ tag: "component", class: _vm.classes, attrs: { "disabled": _vm.disabled, "role": "button" }, on: { "click": function($event) {
-    !_vm.disabled && _vm.$emit("click", $event);
-  } } }, "component", _vm.$attrs, false), [_vm._t("default", function() {
-    return [_vm._v(_vm._s(_vm.label))];
-  })], 2);
-};
-var staticRenderFns = [];
-function normalizeComponent(scriptExports, render2, staticRenderFns2, functionalTemplate, injectStyles, scopeId, moduleIdentifier, shadowMode) {
-  var options = typeof scriptExports === "function" ? scriptExports.options : scriptExports;
-  if (render2) {
-    options.render = render2;
-    options.staticRenderFns = staticRenderFns2;
-    options._compiled = true;
-  }
-  if (functionalTemplate) {
-    options.functional = true;
-  }
-  if (scopeId) {
-    options._scopeId = "data-v-" + scopeId;
-  }
-  var hook;
-  if (moduleIdentifier) {
-    hook = function(context) {
-      context = context || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext;
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== "undefined") {
-        context = __VUE_SSR_CONTEXT__;
-      }
-      if (injectStyles) {
-        injectStyles.call(this, context);
-      }
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier);
-      }
-    };
-    options._ssrRegister = hook;
-  } else if (injectStyles) {
-    hook = shadowMode ? function() {
-      injectStyles.call(this, (options.functional ? this.parent : this).$root.$options.shadowRoot);
-    } : injectStyles;
-  }
-  if (hook) {
-    if (options.functional) {
-      options._injectStyles = hook;
-      var originalRender = options.render;
-      options.render = function renderWithStyleInjection(h, context) {
-        hook.call(context);
-        return originalRender(h, context);
-      };
-    } else {
-      var existing = options.beforeCreate;
-      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
-    }
-  }
-  return {
-    exports: scriptExports,
-    options
-  };
-}
-const __vue2_script = {
+}, b = {
   name: "Btn",
   mixins: [
-    Sizeable,
-    Variant
+    p,
+    P
   ],
   props: {
     active: Boolean,
     block: Boolean,
+    componentPrefix: {
+      type: String,
+      default: "btn"
+    },
     disabled: Boolean,
     label: String,
     outline: Boolean,
@@ -202,30 +71,33 @@ const __vue2_script = {
       ];
     },
     component() {
-      if (this.tag) {
-        return this.tag;
-      }
-      if (this.$attrs.to) {
-        return "router-link";
-      }
-      if (this.$attrs.href) {
-        return "a";
-      }
-      return "button";
+      return this.tag ? this.tag : this.$attrs.href ? "a" : "button";
     },
     variantClassPrefix() {
-      return this.variantPrefix + (this.outline ? "-outline" : "");
+      return (this.variantPrefix || this.componentPrefix) + (this.outline ? "-outline" : "");
     }
   }
+}, d = (t, i) => {
+  const e = t.__vccOpts || t;
+  for (const [s, r] of i)
+    e[s] = r;
+  return e;
 };
-const __cssModules = {};
-var __component__ = /* @__PURE__ */ normalizeComponent(__vue2_script, render, staticRenderFns, false, __vue2_injectStyles, null, null, null);
-function __vue2_injectStyles(context) {
-  for (let o in __cssModules) {
-    this[o] = __cssModules[o];
-  }
+function m(t, i, e, s, r, a) {
+  return n(), o(l(a.component), c(t.$attrs, {
+    disabled: e.disabled,
+    class: a.classes,
+    role: "button"
+  }), {
+    default: f(() => [
+      h(t.$slots, "default", {}, () => [
+        u(x(e.label), 1)
+      ])
+    ]),
+    _: 3
+  }, 16, ["disabled", "class"]);
 }
-var Btn = /* @__PURE__ */ function() {
-  return __component__.exports;
-}();
-export { Btn };
+const g = /* @__PURE__ */ d(b, [["render", m]]);
+export {
+  g as Btn
+};
