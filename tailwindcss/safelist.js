@@ -1,5 +1,5 @@
 module.exports = function safelist() {
     return [{
-        pattern: /btn-/
+        pattern: /btn-?/
     }];
 };
