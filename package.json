@@ -9,6 +9,7 @@
   ],
   "main": "./dist/btn.umd.js",
   "module": "./dist/btn.es.js",
+  "types": "./dist/index.d.ts",
   "browserslist": "last 2 versions, > 0.5%, ie >= 11",
   "exports": {
     ".": {
