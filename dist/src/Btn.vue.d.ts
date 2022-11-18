@@ -1,103 +1,126 @@
-declare const _sfc_main: {
-    name: string;
-    mixins: ({
-        props: {
-            componentPrefix: StringConstructor;
-            size: StringConstructor;
-            sizePrefix: StringConstructor;
-        };
-        computed: {
-            sizeableClassPrefix(): string | undefined;
-            hasSizeablePrefix(): boolean;
-            sizeableClass(): string;
-        };
-    } | {
-        props: {
-            componentPrefix: StringConstructor;
-            variant: StringConstructor;
-            variantPrefix: StringConstructor;
-        };
-        computed: {
-            variantClassPrefix(): string | undefined;
-            hasVariantPrefix(): boolean;
-            variantClass(): string;
-        };
-    })[];
+declare const _sfc_main: import("vue").DefineComponent<{
+    /**
+     * Display button with active state.
+     */
+    active: BooleanConstructor;
+    /**
+     * Display button with blocked state.
+     */
+    block: BooleanConstructor;
+    /**
+     * The component prefix.
+     */
+    componentPrefix: {
+        type: StringConstructor;
+        default: string;
+    };
+    /**
+     * Disable the button.
+     */
+    disabled: BooleanConstructor;
+    /**
+     */
+    label: StringConstructor;
+    /**
+     * Display as an outline button.
+     */
+    outline: BooleanConstructor;
+    /**
+     * The HTML tag.
+     */
+    tag: StringConstructor;
+    /**
+     * The button variant.
+     */
+    variant: {
+        type: StringConstructor;
+        default: string;
+    };
+}, unknown, unknown, {
+    /**
+     * Get the button classes.
+     */
+    classes(): string | undefined[];
+    /**
+     * Get the component tag name.
+     */
+    component(): string;
+    /**
+     * The variant class prefix that accounts for outline buttons.
+     */
+    variantClassPrefix(): string;
+}, {}, {
     props: {
-        /**
-         * Display button with active state.
-         *
-         * @property {Boolean}
-         */
-        active: BooleanConstructor;
-        /**
-         * Display button with blocked state.
-         *
-         * @property {Boolean}
-         */
-        block: BooleanConstructor;
-        /**
-         * The component prefix.
-         *
-         * @property {String}
-         */
-        componentPrefix: {
-            type: StringConstructor;
-            default: string;
-        };
-        /**
-         * Disable the button.
-         *
-         * @property {Boolean}
-         */
-        disabled: BooleanConstructor;
-        /**
-         * The button label.
-         *
-         * @property {String}
-         */
-        label: StringConstructor;
-        /**
-         * Display as an outline button.
-         *
-         * @property {Boolean}
-         */
-        outline: BooleanConstructor;
-        /**
+        componentPrefix: StringConstructor;
+        size: StringConstructor;
+        sizePrefix: StringConstructor;
+    }; /**
+     * The component prefix.
+     */
+    computed: {
+        sizeableClassPrefix(): string | undefined;
+        hasSizeablePrefix(): boolean;
+        sizeableClass(): string; /**
          * The HTML tag.
-         *
-         * @property {String}
          */
-        tag: StringConstructor;
-        /**
-         * The button variant.
-         *
-         * @property {String}
+    };
+} | {
+    props: {
+        componentPrefix: StringConstructor;
+        variant: StringConstructor;
+        variantPrefix: StringConstructor; /**
+         * The component prefix.
          */
-        variant: {
-            type: StringConstructor;
-            default: string;
-        };
     };
     computed: {
-        /**
-         * Get the button classes.
-         *
-         * @property {string}
-         */
-        classes(): Array<string>;
-        /**
-         * Get the component tag name.
-         *
-         * @property {string}
-         */
-        component(): string;
-        /**
-         * The variant class prefix that accounts for outline buttons.
-         *
-         * @property {string}
-         */
-        variantClassPrefix(): string;
+        variantClassPrefix(): string | undefined;
+        hasVariantPrefix(): boolean;
+        variantClass(): string;
     };
-};
+}, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    /**
+     * Display button with active state.
+     */
+    active: BooleanConstructor;
+    /**
+     * Display button with blocked state.
+     */
+    block: BooleanConstructor;
+    /**
+     * The component prefix.
+     */
+    componentPrefix: {
+        type: StringConstructor;
+        default: string;
+    };
+    /**
+     * Disable the button.
+     */
+    disabled: BooleanConstructor;
+    /**
+     */
+    label: StringConstructor;
+    /**
+     * Display as an outline button.
+     */
+    outline: BooleanConstructor;
+    /**
+     * The HTML tag.
+     */
+    tag: StringConstructor;
+    /**
+     * The button variant.
+     */
+    variant: {
+        type: StringConstructor;
+        default: string;
+    };
+}>>, {
+    active: boolean;
+    block: boolean;
+    componentPrefix: string;
+    disabled: boolean;
+    outline: boolean;
+    variant: string;
+}>;
 export default _sfc_main;

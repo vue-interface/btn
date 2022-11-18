@@ -12,10 +12,9 @@
 <script lang="ts">
 import { Sizeable } from '@vue-interface/sizeable';
 import { Variant } from '@vue-interface/variant';
+import { defineComponent } from 'vue';
 
-export default {
-
-    name: 'Btn',
+export default defineComponent({
 
     mixins: [
         Sizeable,
@@ -25,22 +24,16 @@ export default {
     props: {
         /**
          * Display button with active state.
-         *
-         * @property {Boolean}
          */
         active: Boolean,
 
         /**
          * Display button with blocked state.
-         *
-         * @property {Boolean}
          */
         block: Boolean,
 
         /**
          * The component prefix.
-         * 
-         * @property {String}
          */
         componentPrefix: {
             type: String,
@@ -49,36 +42,25 @@ export default {
 
         /**
          * Disable the button.
-         *
-         * @property {Boolean}
          */
         disabled: Boolean,
 
         /**
-         * The button label.
-         *
-         * @property {String}
          */
         label: String,
 
         /**
          * Display as an outline button.
-         *
-         * @property {Boolean}
          */
         outline: Boolean,
 
         /**
          * The HTML tag.
-         *
-         * @property {String}
          */
         tag: String,
 
         /**
          * The button variant.
-         * 
-         * @property {String}
          */
         variant: {
             type: String,
@@ -90,10 +72,8 @@ export default {
 
         /**
          * Get the button classes.
-         * 
-         * @property {string}
          */
-        classes(): Array<string> {
+        classes(): string|undefined[] {
             return [
                 'btn',
                 this.variantClass,
@@ -106,8 +86,6 @@ export default {
 
         /**
          * Get the component tag name.
-         * 
-         * @property {string}
          */
         component(): string {
             if(this.tag) {
@@ -123,8 +101,6 @@ export default {
 
         /**
          * The variant class prefix that accounts for outline buttons.
-         * 
-         * @property {string}
          */
         variantClassPrefix(): string {
             return (this.variantPrefix || this.componentPrefix) + (this.outline ? '-outline' : '');
@@ -132,5 +108,5 @@ export default {
 
     }
 
-};
+});
 </script>

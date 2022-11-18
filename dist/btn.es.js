@@ -1,4 +1,4 @@
-import { openBlock as n, createBlock as o, resolveDynamicComponent as l, mergeProps as h, withCtx as c, renderSlot as f, createTextVNode as x, toDisplayString as p } from "vue";
+import { defineComponent as a, openBlock as n, createBlock as o, resolveDynamicComponent as l, mergeProps as h, withCtx as f, renderSlot as c, createTextVNode as p, toDisplayString as d } from "vue";
 const u = {
   props: {
     componentPrefix: String,
@@ -16,7 +16,7 @@ const u = {
       return this.size ? !this.sizeableClassPrefix || this.hasSizeablePrefix ? this.size : `${this.sizeableClassPrefix}-${this.size}` : "";
     }
   }
-}, d = {
+}, x = {
   props: {
     componentPrefix: String,
     variant: String,
@@ -33,11 +33,10 @@ const u = {
       return this.variant ? !this.variantClassPrefix || this.hasVariantPrefix ? this.variant : `${this.variantClassPrefix}-${this.variant}` : "";
     }
   }
-}, v = {
-  name: "Btn",
+}, v = a({
   mixins: [
     u,
-    d
+    x
   ],
   props: {
     active: Boolean,
@@ -73,27 +72,27 @@ const u = {
       return (this.variantPrefix || this.componentPrefix) + (this.outline ? "-outline" : "");
     }
   }
-}, P = (t, i) => {
+}), P = (t, i) => {
   const e = t.__vccOpts || t;
-  for (const [s, a] of i)
-    e[s] = a;
+  for (const [s, r] of i)
+    e[s] = r;
   return e;
 };
-function b(t, i, e, s, a, r) {
-  return n(), o(l(r.component), h(t.$attrs, {
-    disabled: e.disabled,
-    class: r.classes,
+function b(t, i, e, s, r, m) {
+  return n(), o(l(t.component), h(t.$attrs, {
+    disabled: t.disabled,
+    class: t.classes,
     role: "button"
   }), {
-    default: c(() => [
-      f(t.$slots, "default", {}, () => [
-        x(p(e.label), 1)
+    default: f(() => [
+      c(t.$slots, "default", {}, () => [
+        p(d(t.label), 1)
       ])
     ]),
     _: 3
   }, 16, ["disabled", "class"]);
 }
-const g = /* @__PURE__ */ P(v, [["render", b]]);
+const z = /* @__PURE__ */ P(v, [["render", b]]);
 export {
-  g as Btn
+  z as Btn
 };
