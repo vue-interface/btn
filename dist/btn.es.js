@@ -1,5 +1,5 @@
-import { openBlock as n, createBlock as o, resolveDynamicComponent as l, mergeProps as c, withCtx as f, renderSlot as h, createTextVNode as u, toDisplayString as x } from "vue";
-const p = {
+import { openBlock as n, createBlock as o, resolveDynamicComponent as l, mergeProps as h, withCtx as c, renderSlot as f, createTextVNode as x, toDisplayString as p } from "vue";
+const u = {
   props: {
     componentPrefix: String,
     size: String,
@@ -10,15 +10,13 @@ const p = {
       return this.sizePrefix || this.componentPrefix;
     },
     hasSizeablePrefix() {
-      return this.size && !!this.size.match(
-        new RegExp(`^${this.sizeableClassPrefix}`)
-      );
+      return this.size === void 0 ? !1 : !!this.size.match(new RegExp(`^${this.sizeableClassPrefix}`));
     },
     sizeableClass() {
       return this.size ? !this.sizeableClassPrefix || this.hasSizeablePrefix ? this.size : `${this.sizeableClassPrefix}-${this.size}` : "";
     }
   }
-}, P = {
+}, d = {
   props: {
     componentPrefix: String,
     variant: String,
@@ -29,19 +27,17 @@ const p = {
       return this.variantPrefix || this.componentPrefix;
     },
     hasVariantPrefix() {
-      return this.variant && !!this.variant.match(
-        new RegExp(`^${this.variantClassPrefix}`)
-      );
+      return this.variant === void 0 ? !1 : !!this.variant.match(new RegExp(`^${this.variantClassPrefix}`));
     },
     variantClass() {
       return this.variant ? !this.variantClassPrefix || this.hasVariantPrefix ? this.variant : `${this.variantClassPrefix}-${this.variant}` : "";
     }
   }
-}, b = {
+}, v = {
   name: "Btn",
   mixins: [
-    p,
-    P
+    u,
+    d
   ],
   props: {
     active: Boolean,
@@ -77,27 +73,27 @@ const p = {
       return (this.variantPrefix || this.componentPrefix) + (this.outline ? "-outline" : "");
     }
   }
-}, d = (t, i) => {
+}, P = (t, i) => {
   const e = t.__vccOpts || t;
-  for (const [s, r] of i)
-    e[s] = r;
+  for (const [s, a] of i)
+    e[s] = a;
   return e;
 };
-function m(t, i, e, s, r, a) {
-  return n(), o(l(a.component), c(t.$attrs, {
+function b(t, i, e, s, a, r) {
+  return n(), o(l(r.component), h(t.$attrs, {
     disabled: e.disabled,
-    class: a.classes,
+    class: r.classes,
     role: "button"
   }), {
-    default: f(() => [
-      h(t.$slots, "default", {}, () => [
-        u(x(e.label), 1)
+    default: c(() => [
+      f(t.$slots, "default", {}, () => [
+        x(p(e.label), 1)
       ])
     ]),
     _: 3
   }, 16, ["disabled", "class"]);
 }
-const g = /* @__PURE__ */ d(b, [["render", m]]);
+const g = /* @__PURE__ */ P(v, [["render", b]]);
 export {
   g as Btn
 };

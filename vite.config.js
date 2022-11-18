@@ -1,9 +1,10 @@
+import { babel } from '@rollup/plugin-babel';
+import vue from '@vitejs/plugin-vue';
+import { pascalCase } from "change-case";
 import path from 'path';
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import dts from 'vite-plugin-dts';
 import { name } from './package.json';
-import { pascalCase } from "change-case";
-import { babel } from '@rollup/plugin-babel';
 
 const filename = name.split('/')[1];
 
@@ -13,7 +14,7 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: path.resolve(__dirname, 'index.js'),
+            entry: path.resolve(__dirname, 'index.ts'),
             name: pascalCase(filename),
             fileName: (format) => `${filename}.${format}.js`,
         },
@@ -44,6 +45,7 @@ export default defineConfig({
         }
     },
     plugins: [
-        vue()
+        vue(),
+        dts()
     ],
 });

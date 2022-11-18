@@ -3,14 +3,23 @@
   "version": "3.0.0-beta.0",
   "description": "A Vue button component.",
   "files": [
-    "index.js",
+    "index.ts",
     "dist",
-    "src",
     "tailwindcss"
   ],
   "main": "./dist/btn.umd.js",
-  "module": "./index.js",
+  "module": "./dist/btn.es.js",
   "browserslist": "last 2 versions, > 0.5%, ie >= 11",
+  "exports": {
+    ".": {
+      "import": "./dist/btn.es.js",
+      "require": "./dist/btn.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./tailwindcss": "./tailwindcss/index.js",
+    "./tailwindcss/safelist": "./tailwindcss/safelist.js",
+    "./tailwindcss/sizes": "./tailwindcss/sizes.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -39,8 +48,8 @@
   },
   "homepage": "https://github.com/vue-interface/btn/docs#readme",
   "dependencies": {
-    "@vue-interface/sizeable": "^2.0.0-beta.0",
-    "@vue-interface/variant": "^2.0.0-beta.0",
+    "@vue-interface/sizeable": "^2.0.0-beta.3",
+    "@vue-interface/variant": "^2.0.0-beta.1",
     "color": "^4.2.0"
   },
   "peerDependencies": {
@@ -59,6 +68,7 @@
     "postcss": "^8.4.6",
     "tailwindcss": "^3.0.18",
     "vite": "^3.0.0",
+    "vite-plugin-dts": "^1.7.1",
     "vue": "^3.2.37"
   }
 }
