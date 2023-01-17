@@ -166,7 +166,7 @@
                         navigator.clipboard.writeText(text).then(() => {
                             console.log('The text was copied!');
                         }, e => {
-                            console.warn('The text was copied!');
+                            console.warn(e);
                         });
                     }
                 }
