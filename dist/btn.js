@@ -10,7 +10,9 @@ const u = {
       return this.sizePrefix || this.componentPrefix;
     },
     hasSizeablePrefix() {
-      return this.size === void 0 ? !1 : !!this.size.match(new RegExp(`^${this.sizeableClassPrefix}`));
+      return this.size === void 0 ? !1 : !!this.size.match(
+        new RegExp(`^${this.sizeableClassPrefix}`)
+      );
     },
     sizeableClass() {
       return this.size ? !this.sizeableClassPrefix || this.hasSizeablePrefix ? this.size : `${this.sizeableClassPrefix}-${this.size}` : "";
@@ -27,7 +29,9 @@ const u = {
       return this.variantPrefix || this.componentPrefix;
     },
     hasVariantPrefix() {
-      return this.variant === void 0 ? !1 : !!this.variant.match(new RegExp(`^${this.variantClassPrefix}`));
+      return this.variant === void 0 ? !1 : !!this.variant.match(
+        new RegExp(`^${this.variantClassPrefix}`)
+      );
     },
     variantClass() {
       return this.variant ? !this.variantClassPrefix || this.hasVariantPrefix ? this.variant : `${this.variantClassPrefix}-${this.variant}` : "";

@@ -1,14 +1,14 @@
 module.exports = {
     content: [
-        "./index.html"
+        './index.html'
     ],
     theme: {
         extend: {},
     },
     plugins: [
-        require('./tailwindcss')
+        require('./tailwindcss/index.cjs')
     ],
     safelist: [
-        ...require('./tailwindcss/safelist')()
+        ...require('./tailwindcss/safelist.cjs')()
     ]
 };

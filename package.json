@@ -3,24 +3,24 @@
   "version": "3.0.0-beta.4",
   "description": "A Vue button component.",
   "files": [
-    "index.ts",
     "dist",
     "tailwindcss"
   ],
-  "main": "./dist/btn.umd.js",
-  "module": "./dist/btn.es.js",
+  "type": "module",
+  "main": "./dist/btn.umd.cjs",
+  "module": "./dist/btn.js",
   "types": "./dist/index.d.ts",
-  "browserslist": "last 2 versions, > 0.5%, ie >= 11",
   "exports": {
     ".": {
-      "import": "./dist/btn.es.js",
+      "import": "./dist/btn.js",
       "require": "./dist/btn.umd.js",
       "types": "./dist/index.d.ts"
     },
-    "./tailwindcss": "./tailwindcss/index.js",
-    "./tailwindcss/safelist": "./tailwindcss/safelist.js",
-    "./tailwindcss/sizes": "./tailwindcss/sizes.js"
+    "./tailwindcss": "./tailwindcss/index.cjs",
+    "./tailwindcss/safelist": "./tailwindcss/safelist.cjs",
+    "./tailwindcss/sizes": "./tailwindcss/sizes.cjs"
   },
+  "browserslist": "last 2 versions, > 0.5%, ie >= 11",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -57,11 +57,9 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@rollup/plugin-babel": "^6.0.2",
     "@vitejs/plugin-vue": "^3.0.1",
+    "@vue/eslint-config-typescript": "^11.0.2",
     "autoprefixer": "^10.4.2",
-    "babel-eslint": "^10.1.0",
-    "babel-preset-vue": "^2.0.2",
     "change-case": "^4.1.2",
     "eslint": "^8.27.0",
     "eslint-plugin-vue": "^9.7.0",
