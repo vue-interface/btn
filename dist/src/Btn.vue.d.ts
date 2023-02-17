@@ -49,22 +49,19 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * The variant class prefix that accounts for outline buttons.
      */
     variantClassPrefix(): string;
-}, {}, {
-    props: {
-        componentPrefix: StringConstructor;
-        size: StringConstructor;
-        sizePrefix: StringConstructor;
-    }; /**
-     * The component prefix.
-     */
-    computed: {
-        sizeableClassPrefix(): string | undefined;
-        hasSizeablePrefix(): boolean;
-        sizeableClass(): string; /**
-         * The HTML tag.
-         */
-    };
-} | {
+}, {}, import("vue").DefineComponent<{
+    componentPrefix: StringConstructor;
+    size: StringConstructor;
+    sizePrefix: StringConstructor;
+}, unknown, unknown, {
+    sizeableClassPrefix(): string | undefined;
+    hasSizeablePrefix(): boolean;
+    sizeableClass(): string;
+}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    componentPrefix: StringConstructor;
+    size: StringConstructor;
+    sizePrefix: StringConstructor;
+}>>, {}> | {
     props: {
         componentPrefix: StringConstructor;
         variant: StringConstructor;
@@ -116,9 +113,9 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: string;
     };
 }>>, {
+    componentPrefix: string;
     active: boolean;
     block: boolean;
-    componentPrefix: string;
     disabled: boolean;
     outline: boolean;
     variant: string;

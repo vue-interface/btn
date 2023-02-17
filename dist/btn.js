@@ -1,5 +1,5 @@
 import { defineComponent as a, openBlock as n, createBlock as o, resolveDynamicComponent as l, mergeProps as h, withCtx as f, renderSlot as c, createTextVNode as p, toDisplayString as d } from "vue";
-const u = {
+const u = a({
   props: {
     componentPrefix: String,
     size: String,
@@ -18,7 +18,7 @@ const u = {
       return this.size ? !this.sizeableClassPrefix || this.hasSizeablePrefix ? this.size : `${this.sizeableClassPrefix}-${this.size}` : "";
     }
   }
-}, x = {
+}), x = {
   props: {
     componentPrefix: String,
     variant: String,
