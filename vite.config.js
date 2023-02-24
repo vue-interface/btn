@@ -15,10 +15,16 @@ export default defineConfig({
             fileName
         },
         rollupOptions: {
-            external: ['vue'],
+            external: [
+                '@vue-interface/sizeable',
+                '@vue-interface/variant',
+                'vue'
+            ],
             output: {
                 globals: {
-                    vue: 'Vue'
+                    '@vue-interface/sizeable': 'Sizeable',
+                    '@vue-interface/variant': 'Variant',
+                    'vue': 'Vue'
                 },
             }
         },
