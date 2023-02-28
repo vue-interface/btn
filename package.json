@@ -42,7 +42,7 @@
   "bugs": {
     "url": "https://github.com/vue-interface/btn/issues"
   },
-  "homepage": "https://github.com/vue-interface/btn/docs#readme",
+  "homepage": "https://github.com/vue-interface/btn",
   "dependencies": {
     "@vue-interface/sizeable": "^2.0.0-beta.3",
     "@vue-interface/variant": "^2.0.0-beta.1",
@@ -53,11 +53,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.1",
-    "@vue/eslint-config-typescript": "^11.0.2",
+    "@vue-interface/eslint-config": "1.0.0-beta.1",
     "autoprefixer": "^10.4.2",
     "change-case": "^4.1.2",
     "eslint": "^8.27.0",
-    "eslint-plugin-vue": "^9.7.0",
     "pascalcase": "^2.0.0",
     "postcss": "^8.4.6",
     "tailwindcss": "^3.0.18",
