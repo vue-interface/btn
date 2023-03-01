@@ -1,14 +1,3 @@
-<template>
-    <component
-        :is="component"
-        v-bind="$attrs"
-        :disabled="disabled"
-        :class="classes"
-        role="button">
-        <slot>{{ label }}</slot>
-    </component>
-</template>
-
 <script lang="ts">
 import { Sizeable } from '@vue-interface/sizeable';
 import { Variant } from '@vue-interface/variant';
@@ -110,3 +99,14 @@ export default defineComponent({
 
 });
 </script>
+
+<template>
+    <Component
+        :is="component"
+        v-bind="$attrs"
+        :disabled="disabled"
+        :class="classes"
+        role="button">
+        <slot>{{ label }}</slot>
+    </Component>
+</template>
