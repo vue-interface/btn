@@ -1,3 +1,10 @@
+# [3.0.0-beta.14](https://github.com/vue-interface/btn/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2023-08-22)
+
+
+### Bug Fixes
+
+* issue with attr binding ([0d6afaa](https://github.com/vue-interface/btn/commit/0d6afaa0e9a8b4b59a35ec17ffa1076569c01aee))
+
 # [3.0.0-beta.13](https://github.com/vue-interface/btn/compare/v3.0.0-beta.12...v3.0.0-beta.13) (2023-08-22)
 
 
