@@ -28,8 +28,12 @@ export default defineComponent({
         disabled: Boolean,
 
         /**
+         * The button label.
          */
-        label: String,
+        label: {
+            type: String,
+            default: undefined
+        },
 
         /**
          * Display as an outline button.
@@ -39,7 +43,10 @@ export default defineComponent({
         /**
          * The HTML tag.
          */
-        tag: String
+        tag: {
+            type: String,
+            default: undefined
+        },
     },
 
     computed: {
@@ -47,7 +54,7 @@ export default defineComponent({
         /**
          * Get the button classes.
          */
-        classes(): string|undefined[] {
+        classes() {
             return [
                 'btn',
                 this.active && 'active',
@@ -61,10 +68,6 @@ export default defineComponent({
         component(): string {
             if(this.tag) {
                 return this.tag;
-            }
-
-            if(this.$attrs.href) {
-                return 'a';
             }
 
             return 'button';
