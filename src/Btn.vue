@@ -55,11 +55,10 @@ export default defineComponent({
          * Get the button classes.
          */
         classes() {
-            return [
-                'btn',
-                this.active && 'active',
-                this.disabled && 'disabled',
-            ];
+            return {
+                active: this.active,
+                disabled: this.disabled,
+            };
         },
 
         /**
@@ -88,8 +87,8 @@ export default defineComponent({
 <template>
     <Component
         :is="component"
-        v-bind="$attrs"
         :disabled="disabled"
+        class="btn"
         :class="classes"
         role="button">
         <slot>{{ label }}</slot>
