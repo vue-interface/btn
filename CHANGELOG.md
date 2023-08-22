@@ -1,3 +1,10 @@
+# [3.0.0-beta.15](https://github.com/vue-interface/btn/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2023-08-22)
+
+
+### Bug Fixes
+
+* removed unused deps ([7f4271c](https://github.com/vue-interface/btn/commit/7f4271cc6bb5106a2d3898c4ee8a8e7735951358))
+
 # [3.0.0-beta.14](https://github.com/vue-interface/btn/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2023-08-22)
 
 
