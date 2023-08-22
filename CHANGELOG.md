@@ -1,3 +1,10 @@
+# [3.0.0-beta.16](https://github.com/vue-interface/btn/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2023-08-22)
+
+
+### Bug Fixes
+
+* more style issues from latest migration ([a7e3e04](https://github.com/vue-interface/btn/commit/a7e3e04b9a21ef1ab7066935e4e0a07092021030))
+
 # [3.0.0-beta.15](https://github.com/vue-interface/btn/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2023-08-22)
 
 
