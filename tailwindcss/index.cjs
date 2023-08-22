@@ -15,11 +15,14 @@ module.exports = function v2(options = {}) {
                     : undefined;
                             
                 return {
+                    ...(theme('btn.css')['.btn'] ?? {}),
+                    
                     backgroundColor,
                     backgroundImage: theme('btn.enableGradients') && theme('btn.boxShadow'),
                     borderColor,
                     boxShadow: theme('btn.enableShadows') && theme('btn.boxShadow'),
                     color,
+
                     '&:hover': {
                         backgroundColor: darken(backgroundColor, .075),
                         backgroundImage: theme('btn.enableGradients') && theme('btn.boxShadow'),
@@ -43,7 +46,10 @@ module.exports = function v2(options = {}) {
                             boxShadow: (theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '') + outline
                         }
                     },
-                    '&:disabled, &.disabled': {
+                    '&:disabled, &.disabled, fieldset:disabled &': {
+                        pointerEvents: 'none',
+                        opacity: '.65',
+                        boxShadow: 'none',
                         backgroundColor,
                         backgroundImage: theme('btn.enableGradients') && 'none',
                         borderColor,
@@ -57,6 +63,8 @@ module.exports = function v2(options = {}) {
                     : undefined;
         
                 return {
+                    ...(theme('btn.css')['.btn'] ?? {}),
+                    
                     borderColor: backgroundColor,
                     color: backgroundColor,
                     boxShadow: theme('btn.enableShadows') && theme('btn.boxShadow'),
@@ -83,7 +91,7 @@ module.exports = function v2(options = {}) {
                             
                     '&:disabled, &.disabled': {
                         backgroundColor: 'transparent',
-                        color: backgroundColor,
+                        color: backgroundColor
                     }
                 };
             }
@@ -145,6 +153,7 @@ module.exports = function v2(options = {}) {
                         border: `${theme('form.borderWidth', '1px')} solid transparent`,
                         borderRadius: theme('form.borderRadius', '.25rem'),
                         transition: 'color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
+                        outline: 'none',
                             
                         // '&:hover': {
                         //     color: theme('colors.slate.900', colors.slate['900']),
@@ -155,10 +164,6 @@ module.exports = function v2(options = {}) {
                             outline: '0',
                         //     boxShadow: `0 0 0 ${theme('form.focus.width', '.25rem')} ${Color(mix('#fff', theme('variations.primary', variations.primary), .85)).fade(.5)}`
                         },
-                        
-                        // '&:active, &.active, &:focus': {
-                        //     boxShadow: `0 0 0 ${theme('form.focus.width', '.25rem')} ${Color(mix('#fff', theme('variations.primary', variations.primary), .85)).fade(.5)}`
-                        // },
                         
                         '&:disabled, &.disabled, fieldset:disabled &': {
                             pointerEvents: 'none',

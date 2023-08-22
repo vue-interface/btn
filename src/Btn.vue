@@ -87,9 +87,8 @@ export default defineComponent({
 <template>
     <Component
         :is="component"
-        :disabled="disabled"
-        class="btn"
         :class="classes"
+        :disabled="disabled"
         role="button">
         <slot>{{ label }}</slot>
     </Component>
