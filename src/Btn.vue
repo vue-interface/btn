@@ -1,14 +1,7 @@
 <script lang="ts">
-import { Sizeable } from '@vue-interface/sizeable';
-import { Variant } from '@vue-interface/variant';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-
-    mixins: [
-        Sizeable,
-        Variant,
-    ],
 
     props: {
         /**
@@ -46,15 +39,7 @@ export default defineComponent({
         /**
          * The HTML tag.
          */
-        tag: String,
-
-        /**
-         * The button variant.
-         */
-        variant: {
-            type: String,
-            default: 'primary'
-        },
+        tag: String
     },
 
     computed: {
@@ -65,10 +50,7 @@ export default defineComponent({
         classes(): string|undefined[] {
             return [
                 'btn',
-                this.variantClass,
-                this.sizeableClass,
                 this.active && 'active',
-                this.block && 'btn-block',
                 this.disabled && 'disabled',
             ];
         },
