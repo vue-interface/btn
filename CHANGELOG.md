@@ -1,3 +1,10 @@
+# [3.0.0-beta.17](https://github.com/vue-interface/btn/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2023-09-06)
+
+
+### Bug Fixes
+
+* more TW bug fixes ([b1b1efb](https://github.com/vue-interface/btn/commit/b1b1efb6831917d77bed4ecf4a37565da27ed36e))
+
 # [3.0.0-beta.16](https://github.com/vue-interface/btn/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2023-08-22)
 
 
