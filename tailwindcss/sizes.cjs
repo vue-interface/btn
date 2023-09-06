@@ -12,7 +12,7 @@ module.exports = {
         borderRadius: '.25rem',
     },
 
-    'base': {
+    'md': {
         padding: '.375rem .75rem',
         fontSize: '1rem',
         borderRadius: '.25rem',

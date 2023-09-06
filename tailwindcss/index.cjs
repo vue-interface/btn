@@ -6,12 +6,12 @@ const plugin = require('tailwindcss/plugin');
 const { contrast, darken, mix } = require('./colorize.cjs');
 const sizes = require('./sizes.cjs');
 
-module.exports = function v2(options = {}) {
+module.exports = function(options = {}) {
     return plugin(({ addComponents, matchComponents, theme }) => {
         const styles = Object.assign({
             'btn': ({ backgroundColor, borderColor, color }) => {
                 const outline = theme('btn.outline')
-                    ? theme('btn.outline').replace('DEFAULT', Color(mix(color, darken(borderColor, .125), .85)).fade(.5))
+                    ? theme('btn.outline').replace('DEFAULT', mix(color, darken(borderColor, .125), .85).fade(.5).string())
                     : undefined;
                             
                 return {
@@ -24,22 +24,22 @@ module.exports = function v2(options = {}) {
                     color,
 
                     '&:hover': {
-                        backgroundColor: darken(backgroundColor, .075),
+                        backgroundColor: darken(backgroundColor, .075).string(),
                         backgroundImage: theme('btn.enableGradients') && theme('btn.boxShadow'),
-                        borderColor: darken(borderColor, .1),
-                        color: darken(color, .1),
+                        borderColor: darken(borderColor, .1).string(),
+                        color: darken(color, .1).string(),
                     },
                     '&:focus, &.focus': {
-                        backgroundColor: darken(backgroundColor, .1),
+                        backgroundColor: darken(backgroundColor, .1).string(),
                         backgroundImage: theme('btn.enableGradients') && theme('btn.boxShadow'),
-                        borderColor: darken(borderColor, .125),
+                        borderColor: darken(borderColor, .125.string()),
                         boxShadow: (theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '') + outline,
                         color,
                     },
                     '&:active, &.active, .show > &.dropdown-toggle': {
-                        backgroundColor: darken(backgroundColor, .1),
+                        backgroundColor: darken(backgroundColor, .1).string(),
                         backgroundImage: theme('btn.enableGradients') && 'none',
-                        borderColor: darken(borderColor, .125),
+                        borderColor: darken(borderColor, .125).string(),
                         color,
                     
                         '&:focus': {
@@ -64,7 +64,7 @@ module.exports = function v2(options = {}) {
         
                 return {
                     ...(theme('btn.css')['.btn'] ?? {}),
-                    
+
                     borderColor: backgroundColor,
                     color: backgroundColor,
                     boxShadow: theme('btn.enableShadows') && theme('btn.boxShadow'),
@@ -162,7 +162,6 @@ module.exports = function v2(options = {}) {
                         
                         '&:focus, &.focus': {
                             outline: '0',
-                        //     boxShadow: `0 0 0 ${theme('form.focus.width', '.25rem')} ${Color(mix('#fff', theme('variations.primary', variations.primary), .85)).fade(.5)}`
                         },
                         
                         '&:disabled, &.disabled, fieldset:disabled &': {
