@@ -32,7 +32,7 @@ module.exports = function(options = {}) {
                     '&:focus, &.focus': {
                         backgroundColor: darken(backgroundColor, .1).string(),
                         backgroundImage: theme('btn.enableGradients') && theme('btn.boxShadow'),
-                        borderColor: darken(borderColor, .125.string()),
+                        borderColor: darken(borderColor, .125).string(),
                         boxShadow: (theme('btn.enableShadows') ? `${theme('btn.boxShadow')}, ` : '') + outline,
                         color,
                     },
