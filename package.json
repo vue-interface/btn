@@ -1,6 +1,6 @@
 {
   "name": "@vue-interface/btn",
-  "version": "3.0.0-beta.17",
+  "version": "3.0.0-beta.18",
   "description": "A Vue button component.",
   "files": [
     "dist",

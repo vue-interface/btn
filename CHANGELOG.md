@@ -1,3 +1,10 @@
+# [3.0.0-beta.18](https://github.com/vue-interface/btn/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2023-09-06)
+
+
+### Bug Fixes
+
+* typeo ([035f4fc](https://github.com/vue-interface/btn/commit/035f4fc845629ef72e7a001997005a5c3844de20))
+
 # [3.0.0-beta.17](https://github.com/vue-interface/btn/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2023-09-06)
 
 
