@@ -20,7 +20,9 @@
     "./tailwindcss/colorize": "./tailwindcss/colorize.cjs",
     "./tailwindcss/legacy": "./tailwindcss/legacy.cjs",
     "./tailwindcss/safelist": "./tailwindcss/safelist.cjs",
-    "./tailwindcss/sizes": "./tailwindcss/sizes.cjs"
+    "./tailwindcss/sizes": "./tailwindcss/sizes.cjs",
+    "./tailwindcss/styles/btn": "./tailwindcss/styles/btn.cjs",
+    "./tailwindcss/styles/btn-outline": "./tailwindcss/styles/btn-outline.cjs"
   },
   "browserslist": "last 2 versions, > 0.5%, ie >= 11",
   "scripts": {

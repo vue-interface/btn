@@ -1,22 +1,36 @@
+const shades = require('@vue-interface/variant/tailwindcss/shades');
 const Color = require('color');
 
-module.exports.contrast = function contrast(color, light, dark) {
+function buttonColors(variations) {
+    return Object.fromEntries(
+        Object.entries(shades(variations))
+            .map(([key, backgroundColor]) => {
+                return [key, {
+                    backgroundColor,
+                    borderColor: backgroundColor,
+                    color: contrast(backgroundColor),
+                }];
+            })
+    );
+};
+
+function contrast(color, light, dark) {
     return module.exports.isDark(color) ? (dark || 'black') : (light || 'white');
 };
 
-module.exports.darken = function darken(color, ...args) {
+function darken(color, ...args) {
     return Color(color).darken(...args);
 };
 
-module.exports.isDark = function isDark(color, light, dark) {
+function isDark(color, light, dark) {
     return Color(color).luminosity() > .55;
 };
 
-module.exports.lighten = function lighten(color, ...args) {
+function lighten(color, ...args) {
     return Color(color).lighten(...args);
 };
 
-module.exports.minLightness = function lighten(color, minValue = .5) {
+function minLightness(color, minValue = .5) {
     const luminosity = Color(color).luminosity();
 
     if(luminosity < minValue) {
@@ -27,6 +41,16 @@ module.exports.minLightness = function lighten(color, minValue = .5) {
     return Color(color);
 };
 
-module.exports.mix = function mix(color, subject, percent) {
+function mix(color, subject, percent) {
     return Color(color).mix(Color(subject), percent);
+};
+
+module.exports = {
+    buttonColors,
+    contrast,
+    darken,
+    isDark,
+    lighten,
+    minLightness,
+    mix,
 };
