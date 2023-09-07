@@ -1,3 +1,10 @@
+# [3.0.0-beta.19](https://github.com/vue-interface/btn/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2023-09-07)
+
+
+### Bug Fixes
+
+* improved utility usage for further abstractions ([1fe1f24](https://github.com/vue-interface/btn/commit/1fe1f24bc59d013213a6f019cdba2f7871a924f3))
+
 # [3.0.0-beta.18](https://github.com/vue-interface/btn/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2023-09-06)
 
 
