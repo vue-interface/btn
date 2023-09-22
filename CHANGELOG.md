@@ -1,3 +1,10 @@
+# [3.0.0-beta.20](https://github.com/vue-interface/btn/compare/v3.0.0-beta.19...v3.0.0-beta.20) (2023-09-22)
+
+
+### Bug Fixes
+
+* refactored into composable ([b19575c](https://github.com/vue-interface/btn/commit/b19575c3a7722c8e319e3f7ebfe4fb12ca116bc8))
+
 # [3.0.0-beta.19](https://github.com/vue-interface/btn/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2023-09-07)
 
 
