@@ -39,7 +39,7 @@ module.exports = function(options = {}) {
                      */
                     '.btn' : {
                         display: 'inline-flex',
-                        justifyItems: 'center',
+                        justifyContent: 'center',
                         alignItems: 'center',
                         gap: '.25rem',
                         padding: `${theme('form.paddingY', '.375rem')} ${theme('form.paddingX', '.375rem')}`,

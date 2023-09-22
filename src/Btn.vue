@@ -1,87 +1,29 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 
-export default defineComponent({
+export type BtnProps = {
+    active?: boolean,
+    block?: boolean,
+    disabled?: boolean,
+    label?: string,
+    outline?: boolean,
+    size?: string,
+    tag?: string,
+    variant?: string,
+}
 
-    props: {
-        /**
-         * Display button with active state.
-         */
-        active: Boolean,
+const props = defineProps<BtnProps>();
 
-        /**
-         * Display button with blocked state.
-         */
-        block: Boolean,
+const classes = computed(() => ({
+    btn: true,
+    active: props.active,
+    disabled: props.disabled,
+    [props.size]: !!props.size,
+    [props.variant]: !!props.variant,
+    ['btn-block']: props.block,
+}));
 
-        /**
-         * The component prefix.
-         */
-        componentPrefix: {
-            type: String,
-            default: 'btn'
-        },
-
-        /**
-         * Disable the button.
-         */
-        disabled: Boolean,
-
-        /**
-         * The button label.
-         */
-        label: {
-            type: String,
-            default: undefined
-        },
-
-        /**
-         * Display as an outline button.
-         */
-        outline: Boolean,
-
-        /**
-         * The HTML tag.
-         */
-        tag: {
-            type: String,
-            default: undefined
-        },
-    },
-
-    computed: {
-
-        /**
-         * Get the button classes.
-         */
-        classes() {
-            return {
-                active: this.active,
-                disabled: this.disabled,
-            };
-        },
-
-        /**
-         * Get the component tag name.
-         */
-        component(): string {
-            if(this.tag) {
-                return this.tag;
-            }
-
-            return 'button';
-        },
-
-        /**
-         * The variant class prefix that accounts for outline buttons.
-         */
-        variantClassPrefix(): string {
-            return (this.variantPrefix || this.componentPrefix) + (this.outline ? '-outline' : '');
-        }
-
-    }
-
-});
+const component = computed(() => props.tag ?? 'button');
 </script>
 
 <template>
