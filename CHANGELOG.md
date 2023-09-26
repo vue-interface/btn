@@ -1,3 +1,10 @@
+# [3.0.0-beta.21](https://github.com/vue-interface/btn/compare/v3.0.0-beta.20...v3.0.0-beta.21) (2023-09-26)
+
+
+### Bug Fixes
+
+* added missing dep ([48b519b](https://github.com/vue-interface/btn/commit/48b519b400bc0bf632c67b81e30040e390311399))
+
 # [3.0.0-beta.20](https://github.com/vue-interface/btn/compare/v3.0.0-beta.19...v3.0.0-beta.20) (2023-09-22)
 
 
