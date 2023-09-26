@@ -1,3 +1,10 @@
+# [3.0.0-beta.22](https://github.com/vue-interface/btn/compare/v3.0.0-beta.21...v3.0.0-beta.22) (2023-09-26)
+
+
+### Bug Fixes
+
+* updated tsconfig ([28990fc](https://github.com/vue-interface/btn/commit/28990fc1beec04dd1d9150bc935dba0939cf5a29))
+
 # [3.0.0-beta.21](https://github.com/vue-interface/btn/compare/v3.0.0-beta.20...v3.0.0-beta.21) (2023-09-26)
 
 
