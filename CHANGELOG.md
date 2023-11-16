@@ -1,3 +1,10 @@
+# [3.0.0-beta.23](https://github.com/vue-interface/btn/compare/v3.0.0-beta.22...v3.0.0-beta.23) (2023-11-16)
+
+
+### Bug Fixes
+
+* issue with TW colors and custom color values not working ([def4803](https://github.com/vue-interface/btn/commit/def480343bd69e6c647005c4745200f21fb5a0bb))
+
 # [3.0.0-beta.22](https://github.com/vue-interface/btn/compare/v3.0.0-beta.21...v3.0.0-beta.22) (2023-09-26)
 
 
