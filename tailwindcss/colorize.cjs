@@ -22,8 +22,13 @@ function darken(color, ...args) {
     return Color(color).darken(...args);
 };
 
-function isDark(color, light, dark) {
-    return Color(color).luminosity() > .55;
+function isDark(color) {
+    try {
+        return Color(color).luminosity() > .55;
+    }
+    catch (e) {
+        return false;
+    }
 };
 
 function lighten(color, ...args) {

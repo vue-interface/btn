@@ -6,8 +6,6 @@ module.exports = theme => ({ backgroundColor, borderColor, color }) => {
         : undefined;
                 
     return {
-        ...(theme('btn.css')['.btn'] ?? {}),
-        
         backgroundColor,
         backgroundImage: theme('btn.enableGradients') && theme('btn.boxShadow'),
         borderColor,

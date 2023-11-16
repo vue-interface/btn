@@ -7,8 +7,6 @@ module.exports = theme => ({ backgroundColor }) => {
         : undefined;
 
     return {
-        ...(theme('btn.css')['.btn'] ?? {}),
-
         borderColor: backgroundColor,
         color: backgroundColor,
         boxShadow: theme('btn.enableShadows') && theme('btn.boxShadow'),

@@ -1,22 +1,41 @@
 const variations = require('@vue-interface/variant/tailwindcss/variations');
-const shades = require('@vue-interface/variant/tailwindcss/shades');
-const Color = require('color');
 const colors = require('tailwindcss/colors');
 const plugin = require('tailwindcss/plugin');
-const { buttonColors, contrast, darken, mix } = require('./colorize.cjs');
+const flattenColorPalette = require('tailwindcss/src/util/flattenColorPalette');
+const { contrast } = require('./colorize.cjs');
 const sizes = require('./sizes.cjs');
+
+function transform(backgroundColor) {
+    return {
+        backgroundColor,
+        borderColor: backgroundColor,
+        color: contrast(backgroundColor),
+    };
+}
 
 module.exports = function(options = {}) {
     return plugin(({ addComponents, matchComponents, theme }) => {
-        const styles = Object.assign({
-            'btn': require('./styles/btn.cjs')(theme),
-            'btn-outline': require('./styles/btn-outline.cjs')(theme)
-        }, typeof options.styles === 'function' ? options.styles(theme) : options.styles);
+        const styles = {
+            btn: require('./styles/btn.cjs')(theme),
+            btnOutline: require('./styles/btn-outline.cjs')(theme)
+        };
     
         addComponents(theme('btn.css'));
     
-        matchComponents(styles, {
-            values: buttonColors(theme('btn.variations'))
+        matchComponents({
+            'btn': value => styles.btn(transform(value)),
+            'btn-outline': value => styles.btnOutline(transform(value)),
+            ...(
+                typeof options.styles === 'function'
+                    ? options.styles(theme)
+                    : options.styles
+            )
+        }, {
+            type: 'color',
+            values: {
+                ...flattenColorPalette(theme('btn.variations')),
+                ...flattenColorPalette(theme('colors'))
+            }
         });
         
         matchComponents({
