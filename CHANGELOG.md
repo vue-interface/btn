@@ -1,3 +1,10 @@
+# [3.0.0-beta.24](https://github.com/vue-interface/btn/compare/v3.0.0-beta.23...v3.0.0-beta.24) (2023-12-20)
+
+
+### Bug Fixes
+
+* random js build issues and changed btn-block ([0700871](https://github.com/vue-interface/btn/commit/070087104000a1800d553e0b6e0f087b052d23d1))
+
 # [3.0.0-beta.23](https://github.com/vue-interface/btn/compare/v3.0.0-beta.22...v3.0.0-beta.23) (2023-11-16)
 
 
