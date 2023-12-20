@@ -1,7 +1,7 @@
 const variations = require('@vue-interface/variant/tailwindcss/variations');
 const colors = require('tailwindcss/colors');
 const plugin = require('tailwindcss/plugin');
-const flattenColorPalette = require('tailwindcss/src/util/flattenColorPalette');
+const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
 const { contrast } = require('./colorize.cjs');
 const sizes = require('./sizes.cjs');
 
@@ -122,7 +122,7 @@ module.exports = function(options = {}) {
                      * Block Buttons
                      */
                     '.btn-block': {
-                        display: 'block',
+                        display: 'flex',
                         textAlign: 'center',
                         width: '100%',
                     },
