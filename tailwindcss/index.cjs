@@ -66,7 +66,7 @@ module.exports = function(options = {}) {
                         fontFamily: theme('form.fontFamily', 'inherit'),
                         fontWeight: theme('form.fontWeight', 'normal'),
                         lineHeight: `${theme('form.lineHeight', 1.5)}`,
-                        color: 'inherit',
+                        color: 'currentColor',
                         textAlign: 'center',
                         textDecoration: 'none',
                         whiteSpace: 'nowrap',
