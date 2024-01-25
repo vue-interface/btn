@@ -21,6 +21,15 @@ module.exports = function(options = {}) {
         };
     
         addComponents(theme('btn.css'));
+
+        const tailwindColors = {
+            ...flattenColorPalette(theme('btn.variations')),
+            ...flattenColorPalette(theme('colors'))
+        };
+
+        // These are not valid colors according to Color.js and TailwindCSS, so we omit them.
+        delete tailwindColors?.inherit;
+        delete tailwindColors?.current;
     
         matchComponents({
             'btn': value => styles.btn(transform(value)),
@@ -32,10 +41,7 @@ module.exports = function(options = {}) {
             )
         }, {
             type: 'color',
-            values: {
-                ...flattenColorPalette(theme('btn.variations')),
-                ...flattenColorPalette(theme('colors'))
-            }
+            values: tailwindColors
         });
         
         matchComponents({
