@@ -1,3 +1,10 @@
+# [3.0.0-beta.25](https://github.com/vue-interface/btn/compare/v3.0.0-beta.24...v3.0.0-beta.25) (2024-01-25)
+
+
+### Bug Fixes
+
+* change inherit to currentColor because it was breaking tailwind dev tools ([add2870](https://github.com/vue-interface/btn/commit/add28703cb463e7f390e793668dbc3f554fb7694))
+
 # [3.0.0-beta.24](https://github.com/vue-interface/btn/compare/v3.0.0-beta.23...v3.0.0-beta.24) (2023-12-20)
 
 
