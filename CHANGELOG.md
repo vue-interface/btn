@@ -1,3 +1,10 @@
+# [3.0.0-beta.26](https://github.com/vue-interface/btn/compare/v3.0.0-beta.25...v3.0.0-beta.26) (2024-01-25)
+
+
+### Bug Fixes
+
+* ignore inherit and current to allow tailwind css dev tools to work ([c47b748](https://github.com/vue-interface/btn/commit/c47b74808a909d3aa61a3d3a3a717ac3840620c6))
+
 # [3.0.0-beta.25](https://github.com/vue-interface/btn/compare/v3.0.0-beta.24...v3.0.0-beta.25) (2024-01-25)
 
 
