@@ -1,27 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: var(--color-blue-500);
-    --color-secondary: var(--color-gray-600);
-    --color-success: var(--color-green-500);
-    --color-danger: var(--color-red-600);
-    --color-warning: var(--color-orange-500);
-    --color-info: var(--color-teal-400);
-    --color-light: var(--color-gray-100);
-    --color-dark: var(--color-gray-800);
-    --color-link: var(--color-white);
+    --color-primary: red;
+
     
     /*Should this be in replacement of the above, or in addition to? when I try to use it 
         by itself, it doesnt read the primary and reverts to white*/
-        --btn-primary: var(--color-primary, var(--color-blue-500));
-        --btn-secondary: var(--color-primary, var(--color-gray-600));
-        --btn-success: var(--color-primary, var(--color-green-500));
-        --btn-danger: var(--color-primary, var(--color-red-600));
-        --btn-warning: var(--color-primary, var(--color-orange-500));
-        --btn-info: var(--color-primary, var(--color-teal-400));
-        --btn-light: var(--color-primary, var(--color-gray-100));
-        --btn-dark: var(--color-primary, var(--color-gray-800));
-        --btn-link: var(--color-primary, var(--color-white));
+        
+    --btn-primary: var(--color-primary, var(--color-blue-500));
+    --btn-secondary: var(--color-secondary, var(--color-gray-600));
+    --btn-success: var(--color-success, var(--color-green-500));
+    --btn-danger: var(--color-danger, var(--color-red-600));
+    --btn-warning: var(--color-warning, var(--color-orange-500));
+    --btn-info: var(--color-info, var(--color-teal-400));
+    --btn-light: var(--color-light, var(--color-gray-100));
+    --btn-dark: var(--color-dark, var(--color-gray-800));
+    --btn-link: var(--color-link, var(--color-white));
     
 
     --btn-display: inline-flex;
@@ -92,11 +86,11 @@
 }
 
 @utility btn-* {
-    background-color: --value(--color-*);
-    border-color: --value(--color-*);
+    background-color: --value(--btn-*, --color-*);
+    border-color: --value(--btn-*, --color-*);
     color: white;
 
     &:focus {
-        box-shadow: 0 0 0 .2rem color-mix(in oklch, --value(--color-*) 50%, transparent);
+        box-shadow: 0 0 0 .2rem color-mix(in oklch, --value(--btn-*, --color-*) 50%, transparent);
     }
 }
