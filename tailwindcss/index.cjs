@@ -23,7 +23,9 @@ module.exports = function(options = {}) {
         addComponents(theme('btn.css'));
     
         matchComponents({
-            'btn': value => styles.btn(transform(value)),
+            'btn': value => {
+                return styles.btn(transform(value));
+            },
             'btn-outline': value => styles.btnOutline(transform(value)),
             ...(
                 typeof options.styles === 'function'
