@@ -57,6 +57,11 @@
     transition: var(--btn-transition);
     outline: var(--btn-outline);
 
+    &:hover {
+        background-color: var(--btn-hover-bg);
+        text-decoration: var(--btn-hover-textdecoration);
+    }
+
     &:focus,
     &.focus {
         outline: var(--btn-focus-outline);
@@ -90,6 +95,10 @@
     border-radius: --value(--btn-border-radius-*);
 
     color: --value(--btn-*-text, --text-for-*);
+    
+    &:hover {
+        background-color: color-mix(in oklch, --value(--btn-*, --color-*) 90%, black);
+    }
 
     &:focus {
         box-shadow: 0 0 0 .2rem --alpha(--value(--btn-*, --color-*) / 50%);
@@ -97,5 +106,28 @@
 
     &:active {
         background-color: color-mix(in oklch, --value(--btn-*, --color-*) 95%, black);
+    }
+}
+
+@utility btn-outline-* {
+    border-color: --value(--btn-*, --color-*, [color]); 
+    background-color: transparent;
+
+    padding: --value(--btn-padding-*);
+    font-size: --value(--btn-font-size-*);
+    border-radius: --value(--btn-border-radius-*);
+    
+    color: --value(--btn-*, --color-*, [color]); 
+
+    &:hover {
+        background-color: color-mix(in oklch, --value(--btn-*, --color-*) 90%, black);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 .2rem --alpha(--value(--btn-*, --color-*) / 50%);
+    }
+
+    &:active {
+        outline-color: color-mix(in oklch, --value(--btn-*, --color-*) 95%, black);
     }
 }
