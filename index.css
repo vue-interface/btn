@@ -1,23 +1,9 @@
 @import "tailwindcss";
 
-@theme {
-    --color-primary: red;
+@import "./css/colors.css";
+@import "./css/sizes.css";
 
-    
-    /*Should this be in replacement of the above, or in addition to? when I try to use it 
-        by itself, it doesnt read the primary and reverts to white*/
-        
-    --btn-primary: var(--color-primary, var(--color-blue-500));
-    --btn-secondary: var(--color-secondary, var(--color-gray-600));
-    --btn-success: var(--color-success, var(--color-green-500));
-    --btn-danger: var(--color-danger, var(--color-red-600));
-    --btn-warning: var(--color-warning, var(--color-orange-500));
-    --btn-info: var(--color-info, var(--color-teal-400));
-    --btn-light: var(--color-light, var(--color-gray-100));
-    --btn-dark: var(--color-dark, var(--color-gray-800));
-    --btn-link: var(--color-link, var(--color-white));
-    
-
+@theme {    
     --btn-display: inline-flex;
     --btn-justify: center;
     --btn-align: center;
@@ -85,12 +71,31 @@
     }
 }
 
+@utility btn-inline {
+    display: inline-flex;
+    width: auto;
+}
+
+@utility btn-block {
+    display: flex;
+    width: 100%;
+}
+
 @utility btn-* {
-    background-color: --value(--btn-*, --color-*);
-    border-color: --value(--btn-*, --color-*);
-    color: white;
+    background-color: --value(--btn-*, --color-*, [color]);
+    border-color: --value(--btn-*, --color-*, [color]);
+
+    padding: --value(--btn-padding-*);
+    font-size: --value(--btn-font-size-*);
+    border-radius: --value(--btn-border-radius-*);
+
+    color: --value(--btn-*-text, --text-for-*);
 
     &:focus {
-        box-shadow: 0 0 0 .2rem color-mix(in oklch, --value(--btn-*, --color-*) 50%, transparent);
+        box-shadow: 0 0 0 .2rem --alpha(--value(--btn-*, --color-*) / 50%);
+    }
+
+    &:active {
+        background-color: color-mix(in oklch, --value(--btn-*, --color-*) 95%, black);
     }
 }
