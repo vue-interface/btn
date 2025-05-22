@@ -179,3 +179,15 @@
         outline-color: color-mix(in oklch, --value(--btn-*, --color-*) 95%, black);
     }
 }
+
+@utility btn-link {
+    background-color: --value(--btn-*, --color-*, [color]);
+    border-color: --value(--btn-*, --color-*, [color]);
+
+    padding: --value(--btn-padding-*);
+    font-size: --value(--btn-font-size-*);
+    border-radius: --value(--btn-border-radius-*);
+
+    color: --value(--btn-*-text, --text-for-*);
+}
+            
