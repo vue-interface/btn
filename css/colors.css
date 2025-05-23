@@ -3,9 +3,6 @@
 @theme {
     --btn-text-default: var(--color-white);
     
-    --btn-link: transparent;
-    --btn-link-text: var(--color-primary, var(--color-blue-600));
-
     --btn-primary: var(--color-primary, var(--color-blue-600));
     --btn-primary-text: var(--color-white);
 

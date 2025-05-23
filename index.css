@@ -59,11 +59,6 @@
     transition: var(--btn-transition);
     outline: var(--btn-outline);
 
-    /* &:hover {
-        background-color: var(--btn-hover-bg);
-        text-decoration: var(--btn-hover-textdecoration);
-    } */
-
     &:focus,
     &.focus {
         outline: var(--btn-focus-outline);
@@ -96,7 +91,7 @@
     font-size: --value(--btn-font-size-*);
     border-radius: --value(--btn-border-radius-*);
 
-    color: --value(--btn-*-text, --text-for-*);
+    color: --value(--text-for-*, --btn-*-text);
     
     &:hover {
         background-color: color-mix(in oklch, --value(--btn-*, --color-*) 90%, black);
@@ -122,7 +117,7 @@
     color: --value(--btn-outline-*, --btn-*, --color-*, [color]); 
 
     &:hover {
-        color: --value(--btn-*-text); 
+        color: --value(--text-for-*, --btn-*-text);
         background-color: --value(--btn-*, --color-*, [color]);
     }
 
@@ -134,74 +129,3 @@
         outline-color: color-mix(in oklch, --value(--btn-*, --color-*) 95%, black);
     }
 }
-
-@utility btn-link {
-    background-color: --value(--btn-*, --color-*, [color]);
-    border-color: --value(--btn-*, --color-*, [color]);
-
-    padding: --value(--btn-padding-*);
-    font-size: --value(--btn-font-size-*);
-    border-radius: --value(--btn-border-radius-*);
-
-    color: --value(--btn-*-text, --text-for-*);
-
-    &:hover {
-      text-decoration: var(--btn-link-text-decoration, underline);
-    }
-    
-    &:focus {
-        text-decoration: var(--btn-link-text-decoration, underline);
-    }
-
-    &:active {
-        background-color: color-mix(in oklch, --value(--btn-*, --color-*) 95%, black);
-    }
-}
-
-/* @utility btn-xs {
-    padding: var(--btn-padding-xs);
-    font-size: var(--btn-font-size-xs);
-    border-radius: var(--btn-border-radius-xs);
-}
-
-@utility btn-sm {
-    padding: var(--btn-padding-sm);
-    font-size: var(--btn-font-size-sm);
-    border-radius: var(--btn-border-radius-sm);
-}
-
-@utility btn-base {
-    padding: var(--btn-padding-md);
-    font-size: var(--btn-font-size-md);
-    border-radius: var(--btn-border-radius-sm);
-}
-
-@utility btn-lg {
-    padding: var(--btn-padding-lg);
-    font-size: var(--btn-font-size-lg);
-    border-radius: var(--btn-border-radius-lg);
-}
-
-@utility btn-xl {
-    padding: var(--btn-padding-xl);
-    font-size: var(--btn-font-size-xl);
-    border-radius: var(--btn-border-radius-xl);
-}
-
-@utility btn-2xl {
-    padding: var(--btn-padding-2xl);
-    font-size: var(--btn-font-size-2xl);
-    border-radius: var(--btn-border-radius-2xl);
-}
-
-@utility btn-3xl {
-    padding: var(--btn-padding-3xl);
-    font-size: var(--btn-font-size-3xl);
-    border-radius: var(--btn-border-radius-3xl);
-}
-
-@utility btn-4xl {
-    padding: var(--btn-padding-4xl);
-    font-size: var(--btn-font-size-4xl);
-    border-radius: var(--btn-border-radius-4xl);
-} */
