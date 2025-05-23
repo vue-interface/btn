@@ -11,6 +11,10 @@
     --btn-font-size-md: 1rem;
     --btn-border-radius-sm: .25rem;
 
+    --btn-padding-base: .375rem .75rem;
+    --btn-font-size-base: 1rem;
+    --btn-border-radius-base: .25rem;
+
     --btn-padding-lg: .5rem 1rem;
     --btn-font-size-lg: 1.25rem;
     --btn-border-radius-lg: .25rem;

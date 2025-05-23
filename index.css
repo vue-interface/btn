@@ -59,10 +59,10 @@
     transition: var(--btn-transition);
     outline: var(--btn-outline);
 
-    &:hover {
+    /* &:hover {
         background-color: var(--btn-hover-bg);
         text-decoration: var(--btn-hover-textdecoration);
-    }
+    } */
 
     &:focus,
     &.focus {
@@ -119,10 +119,11 @@
     font-size: --value(--btn-font-size-*);
     border-radius: --value(--btn-border-radius-*);
     
-    color: --value(--btn-*, --color-*, [color]); 
+    color: --value(--btn-outline-*, --btn-*, --color-*, [color]); 
 
     &:hover {
-        background-color: color-mix(in oklch, --value(--btn-*, --color-*) 90%, black);
+        color: --value(--btn-*-text); 
+        background-color: --value(--btn-*, --color-*, [color]);
     }
 
     &:focus {
@@ -157,7 +158,7 @@
     }
 }
 
-@utility btn-xs {
+/* @utility btn-xs {
     padding: var(--btn-padding-xs);
     font-size: var(--btn-font-size-xs);
     border-radius: var(--btn-border-radius-xs);
@@ -203,4 +204,4 @@
     padding: var(--btn-padding-4xl);
     font-size: var(--btn-font-size-4xl);
     border-radius: var(--btn-border-radius-4xl);
-}
+} */
