@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@import "./colors.css";
+@import "./sizes.css";
+
+@theme {
+    --btn-group-position: relative;
+    --btn-group-display: inline-flex;
+    --btn-group-vertical-align: middle;
+
+    --btn-group-horizontal-margin-left: -1px;
+    --btn-group-horizontal-border-radius-right: 0;
+    --btn-group-horizontal-border-radius-left: 0;
+
+    --btn-group-vertical-flex-direction: column;
+    --btn-group-vertical-align-items: flex-start;
+    --btn-group-vertical-justify-content: center;
+    --btn-group-vertical-width: 100%;
+    --btn-group-vertical-margin-top: -1px;
+    --btn-group-vertical-border-radius-bottom: 0;
+    --btn-group-vertical-border-radius-top: 0;
+
+    --btn-inner-position: relative;
+    --btn-inner-flex: 1 1 auto;
+    --btn-inner-z-index: 1;
+
+    --dropdown-toggle-split-padding-x: calc(.375rem * .75);
+    --dropdown-toggle-split-padding-left: calc(.375rem * .75);
+
+    --dropdown-toggle-after-margin-left: 0;
+    --dropdown-toggle-before-margin-right: 0;
+
+    --dropdown-toggle-whitespace: nowrap;
+
+    --dropdown-toggle-arrow-display: inline-block;
+    --dropdown-toggle-arrow-vertical-align: calc(.3em * .85);
+    --dropdown-toggle-arrow-content: "";
+    --dropdown-toggle-arrow-margin: 0 .15em;
+    --dropdown-toggle-arrow-border-top: .3em solid;
+    --dropdown-toggle-arrow-border-right: .3em solid transparent;
+    --dropdown-toggle-arrow-border-bottom: 0;
+    --dropdown-toggle-arrow-border-left: .3em solid transparent;
+
+    --dropdown-toggle-arrow-split-margin-left: calc(.375rem * .75);
+
+    --dropup-arrow-border-top: 0;
+    --dropup-arrow-border-bottom: .3em solid;
+    --dropup-arrow-bottom: 100%;
+    --dropup-arrow-margin-top: 0;
+
+    --dropright-arrow-border-top: .3em solid transparent;
+    --dropright-arrow-border-right: 0;
+    --dropright-arrow-border-bottom: .3em solid transparent;
+    --dropright-arrow-border-left: .3em solid;
+    --dropright-arrow-top: 0;
+    --dropright-arrow-left: 100%;
+    --dropright-arrow-margin-top: 0;
+
+    --dropleft-arrow-display: none;
+
+    --dropleft-before-display: inline-block;
+    --dropleft-before-vertical-align: calc(.3em * .85);
+    --dropleft-before-content: "";
+    --dropleft-before-margin: 0 .15em;
+    --dropleft-before-border-top: .3em solid transparent;
+    --dropleft-before-border-left: 0;
+    --dropleft-before-border-bottom: .3em solid transparent;
+    --dropleft-before-border-right: .3em solid;
+    --dropleft-before-top: 0;
+    --dropleft-before-right: 100%;
+    --dropleft-before-left: auto;
+    --dropleft-before-margin-top: 0;
+}
