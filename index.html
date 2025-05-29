@@ -418,39 +418,39 @@
         <!--dropdown-menu-->
 
         <div id="app" class="dark:bg-neutral-900 dark:text-white">
-            <h1 class="text-4xl mb-6">dropdown-menu</h1>
+            <br><h1 class="text-4xl mb-6">dropdown-menu</h1>
 
             <h3 class="text-2xl mb-3">Basic Usage</h3>
 
             <span>{{ item }} was clicked!</span>
 
-            <dropdown-menu :show="true">
-                <h5 class="dropdown-header">Vue Router</h5>
-                <h5 class="dropdown-header">Links</h5>
-                <a href="#"  class="dropdown-item active" @click="item = 'Item #2'">Item #2</a>
-                <a href="#" @click="item = 'Item #3'">Item #3</a>
+            <div class="dropdown-menu show">
+                <h3 class="dropdown-header">Vue Router</h3>
+                <h3 class="dropdown-header">Links</h3>
+                <a href="#" class="dropdown-item active">Item #2</a>
+                <a href="#" class="dropdown-item">Item #3</a>
                 <div class="dropdown-item-text">Plain Text</div>
                 <hr class="dropdown-divider" />
-                <a href="#" class="dropdown-item" @click="item = 'Item #4'">Item #4</a>
-                <dropdown-header>Heading Element</dropdown-header>
-                <dropdown-item><i>italic text</i></dropdown-item>
-                <dropdown-item><b>bold text</b></dropdown-item>
-                <a v-if="false" class="dropdown-item">false</a>
-                <dropdown-item><em> strong text </em></dropdown-item>
-                <dropdown-item><sub> subscripted text </sub></dropdown-item>
-                <dropdown-item><sup> superscripted text </sup></dropdown-item>
-                <dropdown-item><small> small text </small></dropdown-item>
-                <dropdown-item><del> deleted text </del></dropdown-item>
-                <dropdown-item><ins> inserted text </ins></dropdown-item>
-                <dropdown-item><blockquote> quoted text </blockquote></dropdown-item>
-                <dropdown-item><q> short quoted text </q></dropdown-item>
-                <dropdown-item><cite> cited text </cite></dropdown-item>
-                <dropdown-item><address> address </address></dropdown-item>
-                <dropdown-item><abbr> inserted text </abbr></dropdown-item>
-                <dropdown-item><code> code snippet </code></dropdown-item>
-                <dropdown-item><mark> marked text </mark></dropdown-item>
+                <a href="#" class="dropdown-item">Item #4</a>
+                <h3 class="dropdown-header">Heading Element</h3>
+                <div class="dropdown-item"><i>italic text</i></div>
+                <div class="dropdown-item"><b>bold text</b></div>
+                <!-- Skipping item with v-if="false" -->
+                <div class="dropdown-item"><em>strong text</em></div>
+                <div class="dropdown-item"><sub>subscripted text</sub></div>
+                <div class="dropdown-item"><sup>superscripted text</sup></div>
+                <div class="dropdown-item"><small>small text</small></div>
+                <div class="dropdown-item"><del>deleted text</del></div>
+                <div class="dropdown-item"><ins>inserted text</ins></div>
+                <div class="dropdown-item"><blockquote>quoted text</blockquote></div>
+                <div class="dropdown-item"><q>short quoted text</q></div>
+                <div class="dropdown-item"><cite>cited text</cite></div>
+                <div class="dropdown-item"><address>address</address></div>
+                <div class="dropdown-item"><abbr title="inserted text">inserted text</abbr></div>
+                <div class="dropdown-item"><code>code snippet</code></div>
+                <div class="dropdown-item"><mark>marked text</mark></div>
                 <div class="dropdown-item-plain">Unstyled text</div>
-            </dropdown-menu>
+            </div>
 
         </div>
 

@@ -200,12 +200,12 @@
 }
 
 @utility btn-group-* {
-	> .btn,
-	> .btn-secondary,
-	> .btn-group > .btn,
-	> .btn-group > .btn-secondary {
-		padding: var(--btn-padding-*);
-		font-size: var(--btn-font-size-*);
-		border-radius: var(--btn-border-radius-*);
-	}
+    > .btn,
+    > .btn-secondary,
+    > .btn-group > .btn,
+    > .btn-group > .btn-secondary {
+        padding: --value(--btn-padding-*);
+        font-size: --value(--btn-font-size-*);
+        border-radius: --value(--btn-border-radius-*);
+    }
 }
