@@ -417,31 +417,6 @@
 
         <script type="module">
             import './index.css';
-            import { createApp } from 'vue/dist/vue.esm-bundler.js';
-            import { Btn } from './index.ts';
-            
-            const vue = createApp({
-                components: {
-                    Btn
-                },
-                
-                /*could delete this method below because we got rid of the copy/paste btn?
-                    Then add the js from the btn-group index.html file...*/
-                methods: {
-                    onClick(e) {
-                        console.log(e);
-                    },
-                    copy(text) {                        
-                        navigator.clipboard.writeText(text).then(() => {
-                            console.log('The text was copied!');
-                        }, e => {
-                            console.warn(e);
-                        });
-                    }
-                }
-            });
-
-            vue.mount('#app');
         </script>
     </body>
 </html>
