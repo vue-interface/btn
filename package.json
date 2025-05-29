@@ -16,6 +16,7 @@
       "require": "./dist/btn.umd.js",
       "types": "./dist/index.d.ts"
     },
+    "./css": "./index.css",
     "./tailwindcss": "./tailwindcss/index.cjs",
     "./tailwindcss/colorize": "./tailwindcss/colorize.cjs",
     "./tailwindcss/legacy": "./tailwindcss/legacy.cjs",
