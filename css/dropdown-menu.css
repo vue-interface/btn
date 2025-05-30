@@ -19,6 +19,8 @@
 	--dropdown-menu-border: 1px solid var(--color-neutral-400);
 	--dropdown-menu-border-radius: 0.25rem;
 	--dropdown-menu-box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.5);
+    --dropdown-menu-text-decoration: none;
+	--dropdown-menu-white-space: nowrap;
 
 	--dropdown-menu-item-display: flex;
 	--dropdown-menu-item-width: 100%;
@@ -26,17 +28,12 @@
 	--dropdown-menu-item-font-weight: normal;
 	--dropdown-menu-item-color: var(--color-neutral-800);
 	--dropdown-menu-item-text-align: inherit;
-	--dropdown-menu-item-text-decoration: none;
-	--dropdown-menu-item-white-space: nowrap;
 	--dropdown-menu-item-bg: transparent;
 	--dropdown-menu-item-border: 0;
-
 	--dropdown-menu-item-hover-color: var(--color-neutral-900);
 	--dropdown-menu-item-hover-bg: var(--color-neutral-100);
-
 	--dropdown-menu-item-active-color: var(--color-white);
 	--dropdown-menu-item-active-bg: var(--color-blue-500);
-
 	--dropdown-menu-item-disabled-color: var(--color-neutral-500);
 	--dropdown-menu-item-disabled-pointer-events: none;
 	--dropdown-menu-item-disabled-bg: transparent;
@@ -59,10 +56,8 @@
 
 	--dropdown-menu-left-right: auto;
 	--dropdown-menu-left-left: 0;
-
 	--dropdown-menu-right-right: 0;
 	--dropdown-menu-right-left: auto;
-
 	--dropdown-menu-reset-right: auto;
 	--dropdown-menu-reset-bottom: auto;
 }
@@ -114,8 +109,8 @@
 		font-weight: var(--dropdown-menu-item-font-weight);
 		color: var(--dropdown-menu-item-color);
 		text-align: var(--dropdown-menu-item-text-align);
-		text-decoration: var(--dropdown-menu-item-text-decoration);
-		white-space: var(--dropdown-menu-item-white-space);
+		text-decoration: var(--dropdown-menu-text-decoration);
+		white-space: var(--dropdown-menu-white-space);
 		background-color: var(--dropdown-menu-item-bg);
 		border: var(--dropdown-menu-item-border);
 
@@ -127,7 +122,7 @@
 		&:focus {
 			color: var(--dropdown-menu-item-hover-color);
 			background-color: var(--dropdown-menu-item-hover-bg);
-			text-decoration: none;
+			text-decoration: var(--dropdown-menu-text-decoration);
 
 			@media (prefers-color-scheme: dark) {
 				color: var(--dropdown-menu-item-hover-color-dark);
@@ -139,7 +134,7 @@
 		&:active {
 			color: var(--dropdown-menu-item-active-color);
 			background-color: var(--dropdown-menu-item-active-bg);
-			text-decoration: none;
+			text-decoration: var(--dropdown-menu-text-decoration);
 
 			@media (prefers-color-scheme: dark) {
 				color: var(--dropdown-menu-item-active-color-dark);
@@ -169,7 +164,7 @@
 		font-size: var(--dropdown-menu-header-font-size);
 		font-weight: var(--dropdown-menu-header-font-weight);
 		color: var(--dropdown-menu-header-color);
-		white-space: nowrap;
+		white-space: var(--dropdown-menu-whitespace);
 
 		@media (prefers-color-scheme: dark) {
 			color: var(--dropdown-menu-header-color-dark);
@@ -180,7 +175,7 @@
 	& > hr {
 		height: 0;
 		margin: var(--dropdown-menu-divider-margin);
-		overflow: hidden;
+		overflow: var(--dropdown-menu-divider-overflow);
 		border-top: var(--dropdown-menu-divider-border-top);
 
 		@media (prefers-color-scheme: dark) {
