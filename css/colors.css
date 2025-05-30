@@ -26,7 +26,22 @@
     
     --btn-dark: var(--color-dark, var(--color-gray-800));
     --btn-dark-text: var(--color-white);
-    
+
+    /* Dark theme colors for dropdown-menu*/
+    --dropdown-menu-bg-dark: var(--color-neutral-800);
+	--dropdown-menu-border-dark: var(--color-neutral-700);
+
+	--dropdown-menu-item-color-dark: var(--color-neutral-300);
+	--dropdown-menu-item-hover-bg-dark: var(--color-neutral-600);
+	--dropdown-menu-item-hover-color-dark: var(--color-neutral-200);
+
+	--dropdown-menu-item-active-bg-dark: var(--color-blue-500);
+	--dropdown-menu-item-active-color-dark: var(--color-neutral-200);
+
+	--dropdown-menu-header-color-dark: var(--color-neutral-400);
+	--dropdown-menu-text-color-dark: var(--color-neutral-200);
+	--dropdown-menu-divider-border-dark: var(--color-neutral-700);
+
     /* Grays */
     --text-for-gray-50: var(--color-black, black);
     --text-for-gray-100: var(--color-black, black);

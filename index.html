@@ -435,7 +435,6 @@
                 <h3 class="dropdown-header">Heading Element</h3>
                 <div class="dropdown-item"><i>italic text</i></div>
                 <div class="dropdown-item"><b>bold text</b></div>
-                <!-- Skipping item with v-if="false" -->
                 <div class="dropdown-item"><em>strong text</em></div>
                 <div class="dropdown-item"><sub>subscripted text</sub></div><br>
                 <div class="dropdown-item"><sup>superscripted text</sup></div>
@@ -457,6 +456,21 @@
 
         <script type="module">
             import './index.css';
+
+            //JS testing dropdown menu links
+            document.addEventListener("DOMContentLoaded", () => {
+                        const span = document.querySelector("span");
+                        document.querySelectorAll(".dropdown-item").forEach(item => {
+                            item.addEventListener("click", e => {
+                            e.preventDefault(); // stop page from jumping to top
+                            const text = item.textContent.trim();
+                            if (["Item #2", "Item #3", "Item #4"].includes(text)) {
+                            span.textContent = `${text} was clicked!`;
+                        }
+                    });
+                });
+            });
+
         </script>
     </body>
 </html>

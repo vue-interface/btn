@@ -41,12 +41,15 @@
 	--dropdown-menu-item-disabled-pointer-events: none;
 	--dropdown-menu-item-disabled-bg: transparent;
 
+	--dropdown-menu-header-display: block;
 	--dropdown-menu-header-padding: 0.5rem;
 	--dropdown-menu-header-font-size: 0.875rem;
 	--dropdown-menu-header-font-weight: bold;
 	--dropdown-menu-header-color: var(--color-neutral-500);
 
+	--dropdown-menu-divider-height: 0;
 	--dropdown-menu-divider-margin: 0.25rem 0;
+	--dropdown-menu-divider-overflow: hidden;
 	--dropdown-menu-divider-border-top: 1px solid var(--color-neutral-200);
 
 	--dropdown-menu-text-padding: 0.25rem 1rem;
@@ -59,7 +62,11 @@
 
 	--dropdown-menu-right-right: 0;
 	--dropdown-menu-right-left: auto;
+
+	--dropdown-menu-reset-right: auto;
+	--dropdown-menu-reset-bottom: auto;
 }
+
 
 @utility dropdown-menu {
 	position: var(--dropdown-menu-position);
@@ -78,7 +85,10 @@
 	border-radius: var(--dropdown-menu-border-radius);
 	box-shadow: var(--dropdown-menu-box-shadow);
 
-	@apply dark:bg-neutral-800 dark:border-neutral-700;
+	@media (prefers-color-scheme: dark) {
+		background-color: var(--dropdown-menu-bg-dark);
+		border-color: var(--dropdown-menu-border-dark);
+	}
 
 	.dropup:has(&),
 	.dropright:has(&),
@@ -109,24 +119,32 @@
 		background-color: var(--dropdown-menu-item-bg);
 		border: var(--dropdown-menu-item-border);
 
-		@apply dark:text-neutral-300;
+		@media (prefers-color-scheme: dark) {
+			color: var(--dropdown-menu-item-color-dark);
+		}
 
 		&:hover,
 		&:focus {
 			color: var(--dropdown-menu-item-hover-color);
-			text-decoration: none;
 			background-color: var(--dropdown-menu-item-hover-bg);
+			text-decoration: none;
 
-			@apply dark:bg-neutral-600 dark:text-neutral-200;
+			@media (prefers-color-scheme: dark) {
+				color: var(--dropdown-menu-item-hover-color-dark);
+				background-color: var(--dropdown-menu-item-hover-bg-dark);
+			}
 		}
 
 		&.active,
 		&:active {
 			color: var(--dropdown-menu-item-active-color);
-			text-decoration: none;
 			background-color: var(--dropdown-menu-item-active-bg);
+			text-decoration: none;
 
-			@apply dark:bg-blue-500 dark:text-neutral-200;
+			@media (prefers-color-scheme: dark) {
+				color: var(--dropdown-menu-item-active-color-dark);
+				background-color: var(--dropdown-menu-item-active-bg-dark);
+			}
 		}
 
 		&.disabled,
@@ -153,7 +171,9 @@
 		color: var(--dropdown-menu-header-color);
 		white-space: nowrap;
 
-		@apply dark:text-neutral-400;
+		@media (prefers-color-scheme: dark) {
+			color: var(--dropdown-menu-header-color-dark);
+		}
 	}
 
 	.dropdown-divider,
@@ -163,7 +183,9 @@
 		overflow: hidden;
 		border-top: var(--dropdown-menu-divider-border-top);
 
-		@apply dark:border-neutral-700;
+		@media (prefers-color-scheme: dark) {
+			border-top-color: var(--dropdown-menu-divider-border-dark);
+		}
 	}
 
 	.dropdown-item-text {
@@ -171,7 +193,9 @@
 		padding: var(--dropdown-menu-text-padding);
 		color: var(--dropdown-menu-text-color);
 
-		@apply dark:text-neutral-200;
+		@media (prefers-color-scheme: dark) {
+			color: var(--dropdown-menu-text-color-dark);
+		}
 	}
 
 	&.show {
